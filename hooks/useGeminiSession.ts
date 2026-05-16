@@ -88,7 +88,12 @@ export function useGeminiSession(callbacks: SessionCallbacks) {
                   systemInstruction: config.systemInstruction,
                   ...(config.enableTranscription !== false ? { outputAudioTranscription: {} } : {})
                 },
-            };
+                realtimeInputConfig: {
+                  automaticActivityDetection: {
+                    disabled: true
+                  }
+                }
+            } as any;
 
             console.log(`[Session] Config: Transcriptions=${config.enableTranscription !== false}`);
 
