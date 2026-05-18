@@ -34,7 +34,7 @@ export const NETWORK_ENTRIES: Record<string, KnowledgeEntry> = {
     
     'TX': { 
         title: 'Transmit (Sändare)', 
-        text: 'Applikationens "Mun". Skickar PCM-ljud till molnet.\n\nVIKTIGT: Sändaren styrs av "The Shield" (SHLD). Om skölden är uppe (Röd), skickas INGET ljud härifrån, utan det styrs om till DAM (Dammen). När skölden faller, skickas allt i DAM som en "Burst" via TX.', 
+        text: 'Applikationens "Mun". Skickar PCM-ljud till molnet.\n\nVIKTIGT: Sändaren styrs av "The Shield" (SHLD). Om skölden är uppe (Röd), skickas INGET ljud härifrån, utan det styrs om till DAM (Dammen). När skölden faller, skickas allt i DAM iväg och sänds via TX följt av activityEnd när turen är klar.', 
         good: 'Blink', 
         tags:['NET'], 
         affects: [{id: 'INF', desc: 'Ökar kön'}, {id: 'WS', desc: 'Trafik'}], 
@@ -44,7 +44,7 @@ export const NETWORK_ENTRIES: Record<string, KnowledgeEntry> = {
     
     'RX': { 
         title: 'Receive (Mottagare)', 
-        text: 'Applikationens "Öra". Tar emot data från molnet.\n\nFUNKTIONER:\n1. Audio: Matar GAP (Jitter Buffer).\n2. Text: Visas direkt på skärmen.\n3. TurnComplete: Signalen "Jag är klar". Detta dödar omedelbart BSY-timern och fäller ner SHLD, vilket tillåter oss att sända igen.', 
+        text: 'Applikationens "Öra". Tar emot data från molnet.\n\nFUNKTIONER:\n1. Audio: Matar GAP (Jitter Buffer).\n2. Text: Visas direkt på skärmen.\n3. TurnComplete: Serverns kvitto. Detta dödar omedelbart BSY-timern och fäller ner SHLD, vilket tillåter oss att sända igen.', 
         good: 'Blink', 
         tags:['NET'], 
         affects: [{ id: 'GAP', desc: 'Fyller buffert' }, {id: 'BSY', desc: 'Dödar timer'}], 
@@ -69,14 +69,5 @@ export const NETWORK_ENTRIES: Record<string, KnowledgeEntry> = {
         affects: [{id: 'BSY', desc: 'Tränar modell'}], 
         affectedBy: [{id: 'WS', desc: 'Latens'}],
         x: 85, y: 40 
-    },
-    'BURST': {
-        title: 'Silence Burst (Pacifier)',
-        text: 'En specialsignal (800ms av nollor) som skickas precis innan vi signalerar "End Turn".\n\nSyftet är att rensa serverns inre buffertar och tvinga ner dess VAD-nivå. Utan denna kan servern tro att bruset från din mikrofon är fortsättningen på din mening.',
-        good: 'Auto',
-        tags: ['NET'],
-        affects: [{id: 'TX', desc: 'Sänds via'}],
-        affectedBy: [{id: 'SPK', desc: 'Triggas av'}],
-        x: 55, y: 70
     }
 };

@@ -17,28 +17,20 @@ const Phase1CoreState: React.FC = () => {
                     </p>
                 </div>
 
-                {/* 1. SEPARATION AV ROLL OCH HÅRDVARA */}
+                {/* 1. HÅRDVARUSTYRD ARKITEKTUR UTAN ROLLER */}
                 <div className="space-y-4">
-                    <h4 className="text-purple-400 font-bold text-xs uppercase tracking-widest border-l-4 border-purple-500 pl-3">1. Separation av Roll och Hårdvara (Kritisk Arkitektur)</h4>
+                    <h4 className="text-purple-400 font-bold text-xs uppercase tracking-widest border-l-4 border-purple-500 pl-3">1. Hårdvarustyrd Arkitektur Utan Roller</h4>
                     
                     <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
                         <p className="text-[11px] text-slate-300">
-                            Zustand-storen (<code>useAppStore.ts</code>) måste strikt separera användarens auktoritet från den fysiska ljudroutern.
+                            Begreppet UserRole (Admin, Teacher, Listener) och URL-parametrar är helt borttagna. Appen litar på användarens kontext (t.ex. skapat rum vs scannat QR-kod) istället för tvingande användarroller.
                         </p>
                         
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
-                            <div className="bg-black/30 p-3 rounded border border-purple-500/20">
-                                <strong className="text-purple-300 text-[11px] block mb-1">UserRole (Auktoritet):</strong>
-                                <p className="text-[10px] text-slate-400">
-                                    Kan vara Admin, Teacher eller Listener. Detta styrs via URL-parametrar (t.ex. <code>?role=teacher</code>). Detta styr ENDAST vilka UI-knappar som är synliga (t.ex. knappar för att byta möte). En Teacher kan använda en mobiltelefon.
-                                </p>
-                            </div>
-                            <div className="bg-black/30 p-3 rounded border border-blue-500/20">
-                                <strong className="text-blue-300 text-[11px] block mb-1">HardwareMode (Ljudrouting):</strong>
-                                <p className="text-[10px] text-slate-400">
-                                    Kan vara Simple eller Pro. Detta styrs av en fysisk toggle-knapp i gränssnittet och MÅSTE sparas i <code>localStorage</code> per enhet. Denna bestämmer om appen ska göra en avancerad stereosplit eller inte.
-                                </p>
-                            </div>
+                        <div className="bg-black/30 p-3 rounded border border-blue-500/20">
+                            <strong className="text-blue-300 text-[11px] block mb-1">HardwareMode (Ljudrouting):</strong>
+                            <p className="text-[10px] text-slate-400">
+                                Det enda state som påverkar ljudarkitekturen är HardwareMode (Simple/Pro). Detta styrs via en lokal enhetsinställning (sparas i localStorage). Den avgör huruvida appen gör en avancerad stereosplit ut i PA-systemet eller inte.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -79,26 +71,26 @@ const Phase1CoreState: React.FC = () => {
                     </div>
                 </div>
 
-                {/* 4. PARTICIPANT & PERMISSION STATE */}
+                {/* 4. FRICTIONLESS UX & NÄTVERKSOBEROENDE MUTE */}
                 <div className="space-y-4 pt-4 border-t border-slate-800">
-                    <h4 className="text-pink-400 font-bold text-xs uppercase tracking-widest border-l-4 border-pink-500 pl-3">4. Participant & Permission State (UX/Integritet)</h4>
+                    <h4 className="text-pink-400 font-bold text-xs uppercase tracking-widest border-l-4 border-pink-500 pl-3">4. Frictionless UX & Nätverksoberoende Mute</h4>
                     
                     <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
                         <p className="text-[11px] text-slate-300">
-                            Storen måste hantera tillstånd för deltagarnas interaktion, baserat på klassisk videokonferens-standard.
+                            Molnet är "dumt". Nätverket distribuerar endast ljud, ingen Mute-status eller behörighetslagar synkroniseras.
                         </p>
                         <ul className="text-[11px] text-slate-400 list-disc pl-4 space-y-2">
                             <li>
-                                <strong className="text-pink-300">Room Permissions:</strong> En boolean <code>allowSelfUnmute</code> (styrs av Admin/Teacher).
+                                <strong className="text-pink-300">Lokalt Mute-ansvar:</strong> Deltagaren kontrollerar sin egen enhet helt fristående. Nätverket tvingar aldrig fram ett state, och ingen "Mute All" signal existerar i kodbasen.
                             </li>
                             <li>
-                                <strong className="text-pink-300">Participant State:</strong> Storen måste hålla koll på den lokala klientens <code>isMuted</code> (boolean) och <code>handRaised</code> (boolean).
+                                <strong className="text-pink-300">Frictionless UX:</strong> Alla anslutna kan sända direkt ("De Två Kvadraterna"-principen). Sociala normer (det fysiska mötet) styr vem som pratar, precis som när man lånar ut en fysisk mikrofon.
                             </li>
                         </ul>
                         <div className="bg-black/40 p-3 rounded border border-pink-500/20 mt-2">
-                            <strong className="text-red-400 text-[11px] block mb-1">Regel (Integritet):</strong>
+                            <strong className="text-red-400 text-[11px] block mb-1">Regel:</strong>
                             <p className="text-[10px] text-slate-400">
-                                En Admin kan <strong>aldrig</strong> tvinga <code>isMuted</code> till false (integritet). En Admin kan bara skicka en request, eller tvinga den till true (Mute All).
+                                Lita på användaren och skippa "videokonferens-byråkrati". Fysiska rum (t.ex. kyrksalar) sköter moderering internt. SFU:ns enda jobb är att sända de lokala streamsen så snabbt som möjligt.
                             </p>
                         </div>
                     </div>

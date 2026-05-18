@@ -5,63 +5,62 @@ const Phase4UX: React.FC = () => {
         <section className="mb-12 animate-in fade-in slide-in-from-bottom-8 duration-500 delay-200">
             <h3 className="text-pink-400 font-bold text-sm uppercase tracking-widest mb-3 border-b border-pink-500/30 pb-1 flex items-center gap-2">
                 <span className="bg-pink-900/50 text-pink-200 px-2 rounded text-xs border border-pink-500/50">FAS 4</span>
-                📱 UX & WebRTC DataChannels
+                📱 Frictionless UX & Unified SFU
             </h3>
 
             <div className="bg-slate-900/80 p-5 rounded-xl border border-pink-500/20 text-slate-300 text-sm space-y-8">
                 
                 <div className="bg-slate-950 p-4 rounded border border-slate-800 mb-6">
-                    <p className="text-xs text-slate-400 mb-2 font-mono">Referensmoduler: 55</p>
                     <p className="text-[11px] text-slate-300 leading-relaxed">
-                        Denna fas bygger det visuella gränssnittet och P2P-synkroniseringen. Den förlitar sig på det State som byggdes i Fas 1 och den Ljudmotor som byggdes i Fas 3.
+                        Denna fas bygger det visuella gränssnittet ("De Två Kvadraterna") och förlitar sig på Cloudflare SFU enbart för ljudöverföring. Inga states eller roller synkroniseras via DataChannels.
                     </p>
                 </div>
 
-                {/* 1. FJÄRRSTYRNING VIA DATACHANNELS */}
+                {/* 1. DE TVÅ KVADRATERNA */}
                 <div className="space-y-4">
-                    <h4 className="text-blue-400 font-bold text-xs uppercase tracking-widest border-l-4 border-blue-500 pl-3">1. Fjärrstyrning via DataChannels</h4>
+                    <h4 className="text-blue-400 font-bold text-xs uppercase tracking-widest border-l-4 border-blue-500 pl-3">1. De Två Kvadraterna (UX-Principen)</h4>
                     
                     <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
                         <p className="text-[11px] text-slate-300">
-                            Rums- och mötesuppdateringar ska ske i realtid utan databasanrop.
+                            Gränssnittet är minimalistiskt och designat för att undvika alla videokonferens-byråkratier. Användaren agerar baserat på två tydliga zoner.
                         </p>
-                        <ul className="text-[11px] text-slate-400 list-disc pl-4 space-y-2">
-                            <li>
-                                När en Admin eller Teacher ändrar mötestillstånd (t.ex. byter från "Gudstjänst" till "Söndagsskola"), skickas en signal via WebRTC DataChannels.
-                            </li>
-                            <li>
-                                Alla anslutna klienter i rummet lyssnar på denna kanal och uppdaterar sitt lokala UI och språkval omedelbart.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                {/* 2. DELTAGARNAS INTEGRITET & MUTE-LOGIK */}
-                <div className="space-y-4 pt-4 border-t border-slate-800">
-                    <h4 className="text-emerald-400 font-bold text-xs uppercase tracking-widest border-l-4 border-emerald-500 pl-3">2. Deltagarnas Integritet & Mute-logik</h4>
-                    
-                    <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
-                        <p className="text-[11px] text-slate-300">
-                            Vi tillämpar strikt "Zoom-standard" för mikrofonhantering:
-                        </p>
-                        
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
-                            <div className="bg-black/30 p-3 rounded border border-emerald-500/20">
-                                <strong className="text-emerald-300 text-[11px] block mb-2 border-b border-emerald-500/30 pb-1">Deltagar-UI:</strong>
+                            <div className="bg-black/30 p-3 rounded border border-blue-500/20">
+                                <strong className="text-blue-300 text-[11px] block mb-2 border-b border-blue-500/30 pb-1">Kvadrat 1: Ingången</strong>
                                 <ul className="text-[10px] text-slate-400 space-y-2">
-                                    <li><strong>Mikrofon/Unmute:</strong> En stor knapp. Deltagaren äger alltid sin egen mikrofon.</li>
-                                    <li><strong>Handuppräckning:</strong> En ✋-knapp låter deltagaren visa att de vill tala.</li>
+                                    <li>Används för att välja (eller skapa) rum.</li>
+                                    <li>Här finns QR-koden för att snabbt dela rummet till andra.</li>
+                                    <li>Här finns huvudmikrofonen för att sända ljud ("Vem som helst kan tala").</li>
                                 </ul>
                             </div>
                             <div className="bg-black/30 p-3 rounded border border-purple-500/20">
-                                <strong className="text-purple-300 text-[11px] block mb-2 border-b border-purple-500/30 pb-1">Admin/Teacher-UI:</strong>
+                                <strong className="text-purple-300 text-[11px] block mb-2 border-b border-purple-500/30 pb-1">Kvadrat 2: Målspråket</strong>
                                 <ul className="text-[10px] text-slate-400 space-y-2">
-                                    <li><strong>Mute All:</strong> Skickar en signal via DataChannel som tvingar alla klienters <code>isMuted</code> till true.</li>
-                                    <li><strong>Rättigheter:</strong> En toggle för "Tillåt deltagare att unmuta sig själva" (styr en global <code>allowSelfUnmute</code> boolean via DataChannel). Om denna är false blir deltagarnas mick-knapp utgråad.</li>
-                                    <li><strong>Ask to Unmute:</strong> En Admin kan aldrig slå på någons mikrofon, utan skickar en förfrågan till deltagaren om de räckt upp handen.</li>
+                                    <li>Används enbart för att styra vad användaren själv hör och ser.</li>
+                                    <li>Språkval för tolkningen.</li>
+                                    <li>Lokal volymkontroll.</li>
                                 </ul>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                {/* 2. DUM SFU OCH NEDLAGDA DATACHANNELS */}
+                <div className="space-y-4 pt-4 border-t border-slate-800">
+                    <h4 className="text-emerald-400 font-bold text-xs uppercase tracking-widest border-l-4 border-emerald-500 pl-3">2. Dum SFU & Nedlagda DataChannels</h4>
+                    
+                    <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
+                        <p className="text-[11px] text-slate-300">
+                            Vi har övergett att försöka synkronisera state (UserRoles, isMuted, mötestillstånd) över WebRTC DataChannels.
+                        </p>
+                        <ul className="text-[11px] text-slate-400 list-disc pl-4 space-y-2">
+                            <li>
+                                <strong>Late Joiner-problemet:</strong> Nya deltagare missar tidigare DataChannel-meddelanden och hamnar i out-of-sync states. UI:t förvirras.
+                            </li>
+                            <li>
+                                <strong>Den rena ljud-pipelinen:</strong> Nu agerar Cloudflare SFU endast som en dum, extremt snabb ljudfördelare. Nätverket vet ingenting om vem som är "Admin" eller vem som är mutad. All kontext är lokal.
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -71,21 +70,10 @@ const Phase4UX: React.FC = () => {
                     
                     <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
                         <p className="text-[11px] text-slate-300">
-                            Det ska finnas en tydlig toggle-knapp i UI:t (enbart synlig för Admin/Teacher) som heter "Tillåt översättning i Salen".
+                            Det ska finnas en tydlig toggle-knapp i UI:t som heter "Tillåt översättning i Salen".
                         </p>
                         <p className="text-[11px] text-slate-400">
                             Denna knapp är kopplad till den GainNode i ljudmotorn (Fas 3) som släpper fram AI-rösten till den lokala högtalaren (Vänster kanal i Pro Mode, eller standardhögtalaren i Simple Mode). Som standard är denna AV (mutad) för att undvika oavsiktliga utrop i rummet.
-                        </p>
-                    </div>
-                </div>
-
-                {/* 4. QR-KODER */}
-                <div className="space-y-4 pt-4 border-t border-slate-800">
-                    <h4 className="text-cyan-400 font-bold text-xs uppercase tracking-widest border-l-4 border-cyan-500 pl-3">4. QR-koder för Privata Rum</h4>
-                    
-                    <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
-                        <p className="text-[11px] text-slate-300">
-                            UI:t måste kunna generera och visa en QR-kod baserat på rummets unika hash/URL, så att deltagare i ett fysiskt rum snabbt kan scanna och hoppa in i samma SFU-rum.
                         </p>
                     </div>
                 </div>
@@ -97,7 +85,7 @@ const Phase4UX: React.FC = () => {
                             <span>⚠️</span> ARBETSREGEL FÖR DENNA FIL
                         </h4>
                         <p className="text-[11px] text-red-200 leading-relaxed font-medium">
-                            Denna fil hanterar React-komponenter, knappar, visuella states och utskick/mottagning av DataChannel-meddelanden. Den bygger inte om ljudnoder eller AI-prompter.
+                            Denna fil hanterar React-komponenter, knappar, visuella states och UX. Den bygger inte om ljudnoder eller AI-prompter. Inga P2P synkroniseringsfunktioner får återinföras!
                         </p>
                     </div>
                 </div>

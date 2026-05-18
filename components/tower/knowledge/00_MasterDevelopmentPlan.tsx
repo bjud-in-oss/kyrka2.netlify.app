@@ -38,7 +38,7 @@ const MasterDevelopmentPlan: React.FC = () => {
                         
                         <div className="bg-slate-950 p-3 rounded border border-slate-800 flex flex-col sm:flex-row sm:items-center gap-2">
                             <span className="bg-pink-900/30 text-pink-300 px-2 py-1 rounded text-[10px] font-mono border border-pink-500/30 whitespace-nowrap">04_Phase4_UX.tsx</span>
-                            <span className="text-[11px] text-slate-400">WebRTC DataChannels & UI</span>
+                            <span className="text-[11px] text-slate-400">Frictionless UI & Unified SFU</span>
                         </div>
                     </div>
                 </div>

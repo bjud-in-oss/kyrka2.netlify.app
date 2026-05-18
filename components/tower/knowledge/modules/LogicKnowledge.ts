@@ -61,7 +61,7 @@ export const LOGIC_ENTRIES: Record<string, KnowledgeEntry> = {
     },
     'SQZ': {
         title: 'The Squeeze (Tvingande Avslut)',
-        text: 'Aktiv mellan 20s och 30s taltid.\n\nFungerar som en "tratt". Vi börjar med den tolerans som sattes av TTT. Efter 20s minskar vi den linjärt ner till 100ms vid 25s. Detta ger 5 sekunders "Andrum" (Gap) där toleransen är minimal för att garantera ett avbrott.',
+        text: 'Aktiv mellan 4.0s och 5.5s taltid.\n\nFungerar som en "tratt". Vi börjar med den tolerans som sattes av TTT. Efter 4.0s minskar vi den linjärt ner till 150ms vid 5.5s. Detta ger 0.5 sekunders "Andrum" (Kill Zone) där toleransen är minimal för att garantera ett avbrott.',
         good: '>200ms',
         tags: ['LOGIC'],
         affects: [{id: 'SPK', desc: 'Avbryter'}],
@@ -150,9 +150,9 @@ export const LOGIC_ENTRIES: Record<string, KnowledgeEntry> = {
         x: 55, y: 10 
     },
     'BASE': { 
-        title: 'BASE_SIL (275ms)', 
+        title: 'BASE_SIL (500ms)', 
         text: 'Systemets mest aggressiva läge (Tripp). Aktiveras när både DAM och JITTER är noll. Ger extremt snabb respons ("Walkie Talkie"-känsla) för korta dialoger.', 
-        good: '275ms', 
+        good: '500ms', 
         tags:['LOGIC'], 
         affects: [{ id: 'SIL', desc: 'Golv' }], 
         affectedBy: [], 
@@ -169,7 +169,7 @@ export const LOGIC_ENTRIES: Record<string, KnowledgeEntry> = {
     },
     'GHOST': {
         title: 'Ghost Pressure (Momentum)',
-        text: 'Indikerar om användaren har uppnått "Momentum" (taltid > C_MOM).\n\nOm denna lyser (Lila), vet systemet att du håller en monolog. Då appliceras C_MTR (1200ms) som tystnadstolerans istället för standard 275ms. Detta tillåter dig att andas utan att bli avbruten.',
+        text: 'Indikerar om användaren har uppnått "Momentum" (taltid > 1.5s).\n\nOm denna lyser (Lila), vet systemet att du håller en monolog. Då appliceras C_MTR (800ms) som tystnadstolerans istället för standard 500ms. Detta tillåter dig att andas utan att bli avbruten.',
         good: 'ON vid monolog',
         tags: ['LOGIC'],
         affects: [{id: 'SIL', desc: 'Ökar tolerans'}],

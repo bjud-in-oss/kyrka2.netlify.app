@@ -28,7 +28,7 @@ export const CONFIG_ENTRIES: Record<string, KnowledgeEntry> = {
     },
     'C_SIL': { 
         title: 'Max Silence (Taket)', 
-        text: 'Det maximala värdet för hur länge vi väntar på tystnad innan vi skickar.\n\nDetta är INTE den aktiva toleransen, utan det tak som "Trull"-läget får gå upp till vid monolog. Vid dialog används alltid BASE_SIL (275ms).', 
+        text: 'Det maximala värdet för hur länge vi väntar på tystnad innan vi skickar.\n\nDetta är INTE den aktiva toleransen, utan det tak som "Trull"-läget får gå upp till vid monolog. Vid dialog används alltid BASE_SIL (500ms).', 
         good: '500-1200ms', 
         tags:['CONFIG', 'LOGIC'], 
         affects: [{ id: 'SIL', desc: 'Sätter gräns' }], 
@@ -38,7 +38,7 @@ export const CONFIG_ENTRIES: Record<string, KnowledgeEntry> = {
     'C_ELA': { 
         title: 'Elasticity Start', 
         text: 'Tidsgränsen (sekunder) för när "Ghost Pressure" aktiveras.\n\nOm du pratar längre än detta värde, anser systemet att du håller en monolog och ökar tystnadstoleransen för att inte avbryta dig vid andningspauser.', 
-        good: '3.0s', 
+        good: '1.5s', 
         tags:['CONFIG', 'LOGIC'], 
         affects: [{ id: 'GHOST', desc: 'Triggar' }], 
         affectedBy: [], 
