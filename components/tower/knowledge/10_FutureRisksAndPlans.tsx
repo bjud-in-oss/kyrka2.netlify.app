@@ -50,13 +50,13 @@ const FutureRisksAndPlans: React.FC = () => {
                 {/* 3. REMAINING RISKS */}
                 <div>
                     <h4 className="text-white font-bold mb-3 flex items-center gap-2 text-sm">
-                        <span className="bg-red-500/20 text-red-300 px-2 py-0.5 rounded text-xs">STATUS: LIVE</span>
-                        Kvarstående Utmaningar
+                        <span className="bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded text-xs">IMPLEMENTERAT LÖSNING (v9.0)</span>
+                        Monolog-timeout (LÖST)
                     </h4>
-                    <div className="bg-red-950/30 border border-red-500/10 p-4 rounded">
-                        <strong className="text-red-400 text-xs uppercase block mb-1">Monolog-timeout (20 min)</strong>
+                    <div className="bg-slate-950 border border-emerald-500/10 p-4 rounded">
+                        <strong className="text-emerald-400 text-xs uppercase block mb-1">Lösning på Googles 20-minutersgräns</strong>
                         <p className="text-xs text-slate-400 leading-relaxed">
-                            Google har en hård gräns. Om ljud streamas i 20 minuter <em>utan en enda tystnad på 500ms</em>, klipper de anslutningen. VAD-systemet (The Squeeze) försöker motverka detta, men teoretiskt kan en extremt snabb talare trigga detta.
+                            Tidigare fanns en risk att Googles session avbröts om tal pågick över 20 minuter. Denna risk är nu helt <strong>LÖST</strong> och eliminerad i och med vårt stenhårda MAX_TURN_DURATION-fönster på 6 sekunder. Appen tvingar fram ett sidbyte och en tystnad via explicit <code>activityEnd</code>-signalering långt innan Googles gräns för kontinuerligt tal nås.
                         </p>
                     </div>
                 </div>

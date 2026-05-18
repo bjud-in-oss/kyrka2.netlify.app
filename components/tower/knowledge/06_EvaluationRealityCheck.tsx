@@ -19,7 +19,7 @@ const EvaluationRealityCheck: React.FC = () => {
                     <strong className="text-white block mb-2 text-sm">⚠️ Serverns VAD vs Lokal C_SIL</strong>
                     <div className="text-xs space-y-2 text-slate-400 leading-relaxed">
                         <p>
-                            <strong>Problem:</strong> Vi ökar <code>C_SIL</code> (Paus-tolerans) i "Trull-läget" (upp till 2000ms) för att tillåta pauser. 
+                            <strong>Problem:</strong> Vi ökar <code>C_SIL</code> (Paus-tolerans) i "Trull-läget" (upp till 800ms) för att tillåta pauser. 
                             Men Googles server har en egen VAD-modul som vi inte styr.
                         </p>
                         <p>

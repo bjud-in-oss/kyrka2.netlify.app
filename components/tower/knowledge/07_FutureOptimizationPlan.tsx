@@ -14,21 +14,12 @@ const FutureOptimizationPlan: React.FC = () => {
                     {/* PLAN C UPDATE */}
                     <div className="space-y-3">
                         <div className="flex gap-2 items-center">
-                            <div className="text-cyan-400 font-bold text-xs border border-cyan-500/30 px-2 py-0.5 rounded bg-cyan-900/30">PLAN C</div>
-                            <strong className="text-white text-sm">Prompt-Styrning (Waiting Strategy)</strong>
+                            <div className="text-red-400 font-bold text-xs border border-red-500/30 px-2 py-0.5 rounded bg-red-900/30">[DEPRECATED] PLAN C</div>
+                            <strong className="text-slate-400 line-through text-sm">Prompt-Styrning (Waiting Strategy)</strong>
                         </div>
                         <p className="text-xs text-slate-400 ml-1">
-                            <strong>Teori:</strong> Beordra Gemini via systeminstruktionen att ignorera korta pauser.
+                            <strong>Status: SKROTAD.</strong> Strategin att beordra Gemini via systeminstruktionen att ignorera korta pauser genom att säga fillers som "Hmm..." har övergetts i och med övergången till <strong>The Tape Recorder Protocol</strong> och stenhårda 6-sekunders-chunks. Vi håller inte längre sessionen onödigt öppen via "Puppeteer"-tricks.
                         </p>
-                        
-                        <div className="ml-2 pl-4 border-l border-green-500/30 space-y-3">
-                            <div>
-                                <strong className="text-red-400 text-xs uppercase tracking-wide">Analys:</strong>
-                                <p className="text-xs text-slate-500 leading-relaxed">
-                                    Geminis interna VAD styrs inte direkt av prompten. Men vi kan instruera den att använda fillers ("Hmm...", "Låt mig se...") innan svaret. Detta köper oss tid.
-                                </p>
-                            </div>
-                        </div>
                     </div>
 
                     {/* PLAN D: BYOD SYNC */}

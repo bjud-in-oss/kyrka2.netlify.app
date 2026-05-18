@@ -48,7 +48,7 @@ const OverviewPurpose: React.FC = () => {
                     <div className="bg-slate-950 p-3 rounded border-l-2 border-red-500">
                         <strong className="text-red-400 text-xs uppercase block mb-1">4. Utgång & Nätverk</strong>
                         <p className="text-xs text-slate-400 leading-relaxed">
-                            När skölden faller, skickas allt uppdämt ljud i <code>DAM</code> som en "Burst" via <code>TX</code> till Google.
+                            När skölden faller, skickas allt uppdämt ljud i <code>DAM</code> som en "Data-klump (Flush)" via <code>TX</code> till Google.
                             Svaret kommer tillbaka via <code>RX</code>.
                         </p>
                     </div>

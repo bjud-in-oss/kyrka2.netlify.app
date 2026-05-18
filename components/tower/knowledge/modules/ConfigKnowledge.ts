@@ -29,7 +29,7 @@ export const CONFIG_ENTRIES: Record<string, KnowledgeEntry> = {
     'C_SIL': { 
         title: 'Max Silence (Taket)', 
         text: 'Det maximala värdet för hur länge vi väntar på tystnad innan vi skickar.\n\nDetta är INTE den aktiva toleransen, utan det tak som "Trull"-läget får gå upp till vid monolog. Vid dialog används alltid BASE_SIL (500ms).', 
-        good: '500-1200ms', 
+        good: 'max 800ms', 
         tags:['CONFIG', 'LOGIC'], 
         affects: [{ id: 'SIL', desc: 'Sätter gräns' }], 
         affectedBy: [], 

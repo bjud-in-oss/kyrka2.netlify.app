@@ -36,7 +36,7 @@ const GhostPressureDeepDive: React.FC = () => {
                     <div className="bg-slate-950 p-4 rounded border-l-4 border-green-500">
                         <strong className="text-green-400 text-xs uppercase block mb-1">Lösningen: Momentum (Ghost Pressure)</strong>
                         <p className="text-xs text-slate-400 leading-relaxed mb-3">
-                            Vi insåg att <strong>Tid är Tryck</strong>. Om en användare har pratat konstant i mer än 3 sekunder (C_MOM), bygger de upp "Momentum".
+                            Vi insåg att <strong>Tid är Tryck</strong>. Om en användare har pratat konstant i mer än 1.5 sekunder (C_MOM), bygger de upp "Momentum".
                         </p>
                         
                         <div className="grid grid-cols-2 gap-4">
@@ -49,7 +49,7 @@ const GhostPressureDeepDive: React.FC = () => {
                             <div className="bg-fuchsia-900/20 p-2 rounded border border-fuchsia-500/30">
                                 <strong className="text-white text-xs block">Med Momentum (GHOST)</strong>
                                 <span className="text-xs text-fuchsia-300">Monolog-läge</span>
-                                <div className="text-green-400 font-bold text-lg font-mono">1200ms</div>
+                                <div className="text-green-400 font-bold text-lg font-mono">800ms</div>
                                 <p className="text-[10px] text-slate-400">Tillåter andningspauser.</p>
                             </div>
                         </div>
@@ -58,17 +58,17 @@ const GhostPressureDeepDive: React.FC = () => {
 
                 {/* THE GOLDEN MEAN */}
                 <div className="bg-slate-950/50 p-3 rounded border border-fuchsia-500/30 text-xs text-slate-400">
-                    <strong className="text-fuchsia-400 block mb-1">Varför 1200ms?</strong>
-                    Vi testade 800ms (för kort för 1 Nephi) och 2000ms (för segt för kommandon). 
-                    <strong>1200ms</strong> visade sig vara den "Gyllene Medelvägen". Det är precis tillräckligt långt för att ta ett djupt andetag och vända blad, men kort nog för att kännas naturligt när man slutat prata.
+                    <strong className="text-fuchsia-400 block mb-1">Varför 800ms?</strong>
+                    Vi testade kortare (för kort för 1 Nephi) och 2000ms (för segt för kommandon). 
+                    <strong>800ms</strong> visade sig vara den "Gyllene Medelvägen". Det är precis tillräckligt långt för att ta ett djupt andetag och vända blad, men kort nog för att kännas naturligt när man slutat prata.
                 </div>
 
                 {/* DEV SPECS */}
                 <div className="mt-4 pt-4 border-t border-slate-800">
                     <strong className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block mb-2">Technical Implementation Specs</strong>
                     <div className="bg-black/30 p-2 rounded text-[10px] font-mono text-slate-400 space-y-1">
-                        <p>• <strong>Trigger:</strong> <code>speechDuration &gt; MOMENTUM_START (3.0s)</code></p>
-                        <p>• <strong>Effect:</strong> <code>hydraulicTarget = GHOST_TOLERANCE (1200ms)</code></p>
+                        <p>• <strong>Trigger:</strong> <code>speechDuration &gt; MOMENTUM_START (1.5s)</code></p>
+                        <p>• <strong>Effect:</strong> <code>hydraulicTarget = GHOST_TOLERANCE (800ms)</code></p>
                         <p>• <strong>Visual:</strong> Visas som "GHOST: ON" (Lila) i Tower-panelen.</p>
                     </div>
                 </div>

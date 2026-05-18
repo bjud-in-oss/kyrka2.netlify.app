@@ -45,7 +45,7 @@ const AudioRoutingStateMachine: React.FC = () => {
                         <ul className="text-[11px] text-slate-300 list-disc pl-4 space-y-3">
                             <li>
                                 <strong className="text-purple-300 block mb-1">VÄNSTER KANAL (Salen):</strong>
-                                Ren AI-röst. Skickas till Tesira AEC Ref och Takhögtalare. Styrs via en UI-toggle "Spela upp i Sal".
+                                Ren AI-röst. Skickas alltid per automatik till Tesira AEC Ref och Takhögtalare när Pro Mode är aktivt.
                             </li>
                             <li>
                                 <strong className="text-purple-300 block mb-1">HÖGER KANAL (FM-sändare):</strong>

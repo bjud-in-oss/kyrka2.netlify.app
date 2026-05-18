@@ -48,7 +48,7 @@ const Phase1CoreState: React.FC = () => {
                                 <strong className="text-orange-300">roomId (Fysiskt rum):</strong> T.ex. "Kapellet". Hämtas från URL (<code>/room/kapellet</code>). Styr vilken SFU-kanal vi ansluter till.
                             </li>
                             <li>
-                                <strong className="text-orange-300">meetingState (Digital aktivitet):</strong> T.ex. "Gudstjänst" eller "Söndagsskola". Ändras av en Admin/Teacher i realtid under pågående möte.
+                                <strong className="text-orange-300">meetingState (Digital aktivitet):</strong> T.ex. "Gudstjänst" eller "Söndagsskola". Ändras lokalt i realtid av de som publicerar originalljudet.
                             </li>
                         </ul>
                     </div>

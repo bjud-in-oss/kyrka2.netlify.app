@@ -34,7 +34,7 @@ const TotalSystemCritique: React.FC = () => {
                             </div>
                         </div>
                         <p className="text-xs text-slate-400 mt-2">
-                            När AI:n pratar, samlas användarens tal i <code>shieldBuffer</code>. När AI:n tystnar, öppnas slussen och allt buffrat ljud skickas som en snabb sekvens ("Burst"). Detta förhindrar att vi tappar ord, men garanterar att AI:n aldrig hörs "i munnen" på sig själv (Semantisk Eko).
+                            När AI:n pratar, samlas användarens tal i <code>shieldBuffer</code>. När AI:n tystnar, öppnas slussen och allt buffrat ljud skickas som en snabb sekvens ("Bulk-överföring (Flush)"). Detta förhindrar att vi tappar ord, men garanterar att AI:n aldrig hörs "i munnen" på sig själv (Semantisk Eko).
                         </p>
                         <p className="text-[10px] text-amber-400/80 mt-2 italic">
                             (Notera: Sedan övergången till Gemini Live strävar systemet efter Full Duplex utan buffring. "The Shield/Dam" agerar numera endast Fallback vid hög latens).

@@ -10,13 +10,12 @@ export const LOGIC_DOC: ModuleDoc = {
         { abbr: 'SPK', full: 'Speaking State', desc: 'JA/NEJ. Är användaren aktiv?' },
         { abbr: 'SIL', full: 'Active Silence Limit', desc: 'Den dynamiska gränsen för tystnad (påverkas av TTT).' },
         { abbr: 'GHOST', full: 'Ghost Pressure', desc: 'Är användaren i "Monolog-läge" (Momentum)?' },
-        { abbr: 'PUP', full: 'Puppeteer', desc: 'Regissören. Skickar osynliga textkommandon vid tystnad.' },
         { abbr: 'SQZ', full: 'The Squeeze', desc: 'Tidsbaserad nöd-sänkning av SIL.' },
         { abbr: 'SHLD', full: 'The Shield', desc: 'Buffrar sändning när AI tänker/talar (Blockerar ej mic).' },
         { abbr: 'DAM', full: 'Dam Pressure', desc: 'Mängd ljud i utgående kö (påverkar TTT).' },
         { abbr: 'JIT', full: 'Jitter Pressure', desc: 'Mängd ljud i inkommande kö (påverkar TTT).' },
         { abbr: 'BSY', full: 'Busy Timer', desc: 'Nedräkning för skölden.' },
-        { abbr: 'BASE', full: 'Base Silence', desc: 'Grundvärdet (275ms) för snabb dialog.' },
+        { abbr: 'BASE', full: 'Base Silence', desc: 'Grundvärdet (500ms) för snabb dialog.' },
         { abbr: 'Q_LN', full: 'Logic Queue', desc: 'Antal logiska turer i kö.' },
         { abbr: 'CS_M', full: 'Cold Start Mode', desc: 'SAFE eller ADAPTIVE läge.' }
     ]
@@ -100,18 +99,9 @@ export const LOGIC_ENTRIES: Record<string, KnowledgeEntry> = {
         text: 'Tid i tystnad. Om denna överstiger den aktiva toleransen (som styrs av TTT + Squeeze), anser vi att turen är klar och aktiverar Skölden.', 
         good: 'Låg', 
         tags: ['LOGIC'],
-        affects: [{ id: 'BSY', desc: 'Startar' }, { id: 'PUP', desc: 'Triggar' }],
+        affects: [{ id: 'BSY', desc: 'Startar' }],
         affectedBy: [{ id: 'SPK', desc: 'Reset' }],
         x: 45, y: 50
-    },
-    'PUP': {
-        title: 'Puppeteer (Regissören)',
-        text: 'Osynlig logik som skickar textkommandon till AI:n vid lång tystnad. (Se Modul 37)\n\n1.5s -> [CMD: REPEAT_LAST]\n3.0s -> [CMD: FILLER "Hmm..."]\n5.0s -> HARD STOP.\n\nFörhindrar att AI:n hittar på slut eller svarar för snabbt.',
-        good: 'Aktiv vid tystnad',
-        tags: ['LOGIC', 'AI'],
-        affects: [{ id: 'TX', desc: 'Skickar text' }],
-        affectedBy: [{ id: 'SIL', desc: 'Triggas av' }],
-        x: 35, y: 60
     },
     'GAP': { 
         title: 'Jitter Buffer Gap', 

@@ -65,11 +65,11 @@ const Phase3AudioEngine: React.FC = () => {
                 </div>
 
                 <div className="space-y-4 pt-4 border-t border-slate-800">
-                    <h4 className="text-orange-400 font-bold text-xs uppercase tracking-widest border-l-4 border-orange-500 pl-3">4. Intern Gain-Routing ("Lärarens Knapp")</h4>
+                    <h4 className="text-orange-400 font-bold text-xs uppercase tracking-widest border-l-4 border-orange-500 pl-3">4. Intern Gain-Routing</h4>
                     
                     <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
                         <p className="text-[11px] text-slate-300">
-                            I ljudmotorn (både Simple och Pro Mode) måste uppspelningen av den lokala AI-rösten passera en GainNode. Denna nod är mutad (0) som standard, och styrs av UI-knappen "Spela upp AI i Salen" som byggs i Fas 4.
+                            I ljudmotorn routas uppspelningen av den lokala AI-rösten automatiskt. Om "Pro Mode" är valt, bypassas den tysta normala routern och AI-rösten skickas osynligt och direkt enbart till vänster kanal (Salen/AEC Ref). Inga separata UI-knappar för "Spela upp i salen" existerar längre.
                         </p>
                     </div>
                 </div>

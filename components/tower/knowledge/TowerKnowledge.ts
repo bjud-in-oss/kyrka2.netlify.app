@@ -20,7 +20,6 @@ export const MODULE_DOCS: Record<string, ModuleDoc> = {
         title: 'Phase 1: Core State (Modul 01)',
         description: 'Kravspecifikation för Zustand Store, Rum & Minneshantering.',
         params: [
-            { abbr: 'ROL', full: 'UserRole', desc: 'Auktoritet (Admin, Teacher, Listener). Styr UI.' },
             { abbr: 'HW', full: 'HardwareMode', desc: 'Ljudrouting (Simple, Pro). Sparas lokalt.' },
             { abbr: 'MEM', full: 'Sliding Window', desc: 'Oändligt minne via contextWindowCompression.' }
         ]
@@ -39,8 +38,7 @@ export const MODULE_DOCS: Record<string, ModuleDoc> = {
         description: 'Kravspecifikation för UI, integritet och P2P-synkronisering.',
         params: [
             { abbr: 'DAT', full: 'DataChannels', desc: 'Realtidsuppdateringar av rum och möten.' },
-            { abbr: 'MUT', full: 'Mute Logic', desc: 'Deltagare äger sin mick. Admin kan Mute All.' },
-            { abbr: 'TCH', full: 'Lärarens Knapp', desc: 'Toggle för att spela upp AI-rösten i salen.' }
+            { abbr: 'MUT', full: 'Mute Logic', desc: 'Deltagare äger sin mick. Ingen central Mute All.' }
         ]
     },
     'MODULE_NETWORK': NETWORK_DOC,
@@ -53,12 +51,9 @@ export const MODULE_DOCS: Record<string, ModuleDoc> = {
         params: []
     },
     'MODULE_PUPPETEER': {
-        title: 'Puppeteer Protocol (Modul 37)',
-        description: 'Regissören som osynligt styr AI:n med textkommandon för att hantera tystnad och undvika hallucinationer.',
-        params: [
-            { abbr: 'PUP', full: 'Puppeteer State', desc: 'IDLE, REPEAT, FILLER eller CUT.' },
-            { abbr: 'CMD', full: 'Command Injection', desc: 'Osynliga text-instruktioner till modellen.' }
-        ]
+        title: '[DEPRECATED] Puppeteer Protocol (Modul 37)',
+        description: 'Skrotat koncept. Vi använder nu The Tape Recorder Protocol och strikta 6s-klipp.',
+        params: []
     },
     'MODULE_SFU': {
         title: 'SFU Architecture (Modul 52)',
@@ -71,9 +66,9 @@ export const MODULE_DOCS: Record<string, ModuleDoc> = {
     },
     'MODULE_ROOMS': {
         title: 'Room & Role Management (Modul 53)',
-        description: 'Specifikation för hur State hanterar Admin-roller, SFU-rum och LLM-översättning av rumsnamn.',
+        description: 'Specifikation för hur State hanterar rumsval, SFU-rum och LLM-översättning av rumsnamn.',
         params: [
-            { abbr: 'ADM', full: 'Admin Role', desc: 'Endast Admin tillåts publicera originalljudet.' },
+            { abbr: 'PUB', full: 'Publish Context', desc: 'Endast användare i Kvadrat 1 publicerar originalljudet.' },
             { abbr: 'ROOM', full: 'SFU Room', desc: 'Isolerade rum (Huvudkyrkan vs Privata rum).' },
             { abbr: 'LLM', full: 'Name Translation', desc: 'Rumsnamn översätts dynamiskt till UI-språket.' }
         ]
@@ -82,7 +77,7 @@ export const MODULE_DOCS: Record<string, ModuleDoc> = {
         title: 'Audio Routing State Machine (Modul 54)',
         description: 'Strikt regelverk för ljudhantering för att undvika rundgång, eko och dubbla API-kostnader.',
         params: [
-            { abbr: 'ST1', full: 'State 1: Admin', desc: 'Publicerar original_audio, anropar aldrig AI.' },
+            { abbr: 'ST1', full: 'State 1: Bypass', desc: 'Publicerar original_audio, anropar aldrig AI.' },
             { abbr: 'ST2', full: 'State 2: Solo', desc: 'Fick-tolk utan SFU-koppling.' },
             { abbr: 'ST3', full: 'State 3: Multi', desc: 'AI-Leader mixar peer_mics och publicerar translation.' }
         ]
@@ -98,7 +93,7 @@ export const MODULE_DOCS: Record<string, ModuleDoc> = {
     },
     'MODULE_HARDWARE': {
         title: 'Hardware Profiles & Routing (Modul 56)',
-        description: 'Hårdvaru-agnostisk design, Admin-val av ljudkort, Tesira vs Ljudpuck och Windows-fallgropar.',
+        description: 'Hårdvaru-agnostisk design, UI-val av ljudkort, Tesira vs Ljudpuck och Windows-fallgropar.',
         params: [
             { abbr: 'PRO', full: 'Pro Setup', desc: 'Tesira USB med Mix-Minus i hårdvara.' },
             { abbr: 'QCK', full: 'Quick Setup', desc: 'Ljudpuck med inbyggd AEC.' },
@@ -124,10 +119,10 @@ export const MODULE_DOCS: Record<string, ModuleDoc> = {
         ]
     },
     'MODULE_ROLES_VS_HW': {
-        title: 'Roller vs Hårdvarulägen (Modul 59)',
-        description: 'Kritisk separering mellan vem du är (Roll) och vilken maskin du sitter vid (Hårdvaruläge).',
+        title: 'Kontext vs Hårdvarulägen (Modul 59)',
+        description: 'Kritisk separering mellan din kontext i mötet (Kvadrat) och vilken maskin du sitter vid (Hårdvaruläge).',
         params: [
-            { abbr: 'ROL', full: 'Användarroll', desc: 'Styrs via URL. Ger UI-rättigheter (t.ex. byta möte).' },
+            { abbr: 'CTX', full: 'Användarkontext', desc: 'Styrs lokalt av vad användaren försöker göra, inte tvingande roller.' },
             { abbr: 'SMP', full: 'Simple Mode', desc: 'Standardljud. För mobiler och ljudpuckar.' },
             { abbr: 'PRO', full: 'Pro Mode', desc: 'Pro Split & AEC av. Endast för Tesira/vMix PC.' }
         ]
