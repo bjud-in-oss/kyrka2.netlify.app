@@ -21,7 +21,7 @@ const HardwareProfiles: React.FC = () => {
 
                 <div className="bg-blue-900/20 p-4 rounded border border-blue-500/30 mb-6">
                     <p className="text-xs text-blue-300 leading-relaxed">
-                        Webbappen är i grunden <strong>hårdvaru-agnostisk</strong>. Det är dock Admin-vyns ansvar att hantera valet av ljudkort (via <code>setSinkId</code> för utljud och <code>getUserMedia</code> för inljud). Nedan beskrivs våra huvudscenarier för ljudrouting och AEC.
+                        Webbappen är i grunden <strong>hårdvaru-agnostisk</strong>. Det är användarens ansvar i UI:t (Kvadrat 1) att hantera valet av ljudkort (via <code>setSinkId</code> för utljud och <code>getUserMedia</code> för inljud). Nedan beskrivs våra huvudscenarier för ljudrouting och AEC.
                     </p>
                 </div>
 

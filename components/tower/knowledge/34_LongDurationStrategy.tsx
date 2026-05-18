@@ -6,14 +6,14 @@ const LongDurationStrategy: React.FC = () => {
         <section className="mb-12 animate-in fade-in slide-in-from-bottom-8 duration-500 delay-200">
             <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-3 border-b border-white/20 pb-1 flex items-center gap-2">
                 <span className="bg-white text-black px-2 rounded text-xs">MODUL 34</span>
-                Sermon Mode: 20-Minuters-Strategin
+                Sermon Mode: Micro-Turns Strategin (6s)
             </h3>
 
             <div className="bg-slate-900/80 p-5 rounded-xl border border-white/10 text-slate-300 text-sm space-y-8">
                 
                 <p className="text-sm text-slate-400 leading-relaxed italic">
                     "Kan jag prata i 20 minuter utan paus?"
-                    <br/>Svaret är tekniskt sett <strong>Nej</strong> (servern gör timeout), men praktiskt sett <strong>Ja</strong> (om vi fuskar).
+                    <br/>Svaret är tekniskt sett <strong>Nej</strong> (servern gör timeout), men praktiskt sett <strong>Ja</strong> (om vi kapar kontinuerligt).
                 </p>
 
                 {/* THE PROBLEM */}
@@ -40,13 +40,13 @@ const LongDurationStrategy: React.FC = () => {
                             Appen har en inbyggd säkerhetsspärr i <code>useAudioInput.ts</code>.
                         </p>
                         <div className="bg-black/40 p-2 rounded font-mono text-[10px] text-green-400 border border-white/10">
-                            if (speechDuration &gt; 25.0s) &#123;<br/>
+                            if (speechDuration &gt; 6.0s) &#123;<br/>
                             &nbsp;&nbsp;flushTurn(); // Tvinga iväg ljudet<br/>
                             &#125;
                         </div>
                         <ul className="list-disc list-inside text-xs text-slate-400 space-y-2 mt-2">
                             <li>
-                                <strong>Micro-Turns:</strong> Även om talaren (prästen) pratar oavbrutet, klipper appen ljudet i bitar om max 25 sekunder.
+                                <strong>Micro-Turns:</strong> Även om talaren (prästen) pratar oavbrutet, klipper appen ljudet i bitar om max 6 sekunder. Detta minimerar latensen markant.
                             </li>
                             <li>
                                 <strong>Context Window:</strong> Eftersom Gemini har ett "minne" (Context), kommer den ihåg vad som sades i förra klippet. Den kan därför fortsätta en mening grammatiskt korrekt även om vi klippte den mitt i ett ord.
@@ -62,7 +62,7 @@ const LongDurationStrategy: React.FC = () => {
                 <div className="mt-4 p-3 bg-indigo-900/20 rounded border border-indigo-500/30 flex items-center gap-3">
                     <div className="text-2xl">⏳</div>
                     <div className="text-xs text-indigo-200">
-                        <strong>Tips:</strong> Om du ser att texten "hackar till" var 25:e sekund, är det detta skyddssystem som arbetar. Det är priset vi betalar för oändlig transkribering.
+                        <strong>Tips:</strong> Om du ser att texten "hackar till" var 6:e sekund, är det detta skyddssystem som arbetar. Det är priset vi betalar för extremt låg latens vid kontinuerligt tal.
                     </div>
                 </div>
 

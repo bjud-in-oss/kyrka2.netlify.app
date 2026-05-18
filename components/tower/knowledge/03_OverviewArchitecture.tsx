@@ -17,7 +17,7 @@ const OverviewArchitecture: React.FC = () => {
                             Vi har övergett statiska tider för tystnad. Systemet känner av "trycket" i buffertarna. 
                             <br/>• <strong>Utgående tryck (DAM):</strong> Ökar toleransen (Trull) för att tillåta konstpauser i monologer.
                             <br/>• <strong>Inkommande tryck (JITTER):</strong> Sänker toleransen mjukt (Soft Landing) när AI:n pratar.
-                            <br/>• <strong>Noll tryck:</strong> Återgår till 200ms (Tripp) för blixtsnabb dialog.
+                            <br/>• <strong>Noll tryck:</strong> Återgår till 500ms (Tripp) för blixtsnabb dialog.
                         </p>
                     </div>
                 </div>

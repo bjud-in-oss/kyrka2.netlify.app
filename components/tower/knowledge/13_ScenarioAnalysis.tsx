@@ -25,9 +25,9 @@ const ScenarioAnalysis: React.FC = () => {
                             <li><strong>Dynamik:</strong> Korta meningar, snabba kast.</li>
                             <li><strong>Logik:</strong>
                                 <br/>
-                                • <code>BASE_SIL</code>: <strong>200ms</strong>. Extremt aggressivt (Tripp). Vi prioriterar hastighet.
+                                • <code>BASE_SIL</code>: <strong>500ms</strong>. Aggressivt (Tripp). Vi prioriterar hastighet.
                                 <br/>
-                                • <code>JIT == 0</code>: Eftersom dialogen är kort, töms jitterbufferten snabbt. Vi återgår nästan direkt till 200ms-läget ("Hard Reset").
+                                • <code>JIT == 0</code>: Eftersom dialogen är kort, töms jitterbufferten snabbt. Vi återgår nästan direkt till 500ms-läget ("Hard Reset").
                             </li>
                             <li className="text-green-300 font-bold mt-auto pt-2 text-sm">Slutsats: Maximerad responsivitet.</li>
                         </ul>
@@ -41,9 +41,9 @@ const ScenarioAnalysis: React.FC = () => {
                             <li><strong>Dynamik:</strong> Flytande tal utan tydliga pauser.</li>
                             <li><strong>Logik:</strong>
                                 <br/>
-                                • <code>DAM {'>'} 0</code>: Bufferten fylls ständigt på. Logiken "Trapp/Trull" ökar toleransen till 1000-2000ms.
+                                • <code>DAM {'>'} 0</code>: Bufferten fylls ständigt på. Logiken "Trapp/Trull" ökar toleransen till max 800ms.
                                 <br/>
-                                • <code>Soft Landing</code>: När talaren väl pausar, och AI:n svarar, halveras toleransen istället för att krascha till 200ms. Detta ger talaren "tveksamhets-utrymme" att fortsätta.
+                                • <code>Soft Landing</code>: När talaren väl pausar, och AI:n svarar, halveras toleransen istället för att krascha till 500ms. Detta ger talaren "tveksamhets-utrymme" att fortsätta.
                             </li>
                             <li className="text-indigo-300 font-bold mt-auto pt-2 text-sm">Slutsats: Adaptiv stabilitet.</li>
                         </ul>

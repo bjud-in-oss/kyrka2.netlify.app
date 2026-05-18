@@ -37,7 +37,7 @@ const VadArchitectureDeepDive: React.FC = () => {
                     <strong className="text-white block mb-1 text-sm">"Är meningen slut?"</strong>
                     <p className="text-xs text-slate-400 mb-2">
                         Här bor "Hydrauliken". Toleransen <code>ACTIVE_SIL</code> justeras dynamiskt baserat på bufferttryck (DAM/JITTER). 
-                        I monologer ökar den. Vid 20-30s aktiveras "The Squeeze" för att tvinga fram ett slut.
+                        I monologer ökar den upp till max 800ms. Efter 4.0 sekunder aktiveras "The Squeeze" för att komprimera fönstret linjärt, i syfte att forcera ett slutavbrott till max 6.0 sekunder för att simulera en blixtsnabb simultantolk.
                     </p>
                 </div>
 

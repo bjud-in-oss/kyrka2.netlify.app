@@ -27,7 +27,7 @@ const VadDynamics: React.FC = () => {
                         <div>
                             <div className="flex justify-between mb-1">
                                 <strong className="text-white">UPPTRAPPNING (Trull/Monolog)</strong>
-                                <span className="text-red-400 font-bold">1200ms - 2000ms</span>
+                                <span className="text-red-400 font-bold">max 800ms</span>
                             </div>
                             <div className="text-slate-500 mb-2 flex flex-col gap-1 bg-slate-900/50 p-2 rounded border border-slate-800">
                                 <div className="flex justify-between">
@@ -36,7 +36,7 @@ const VadDynamics: React.FC = () => {
                                 </div>
                                 <div className="flex justify-between">
                                     <span>Villkor B (Rörelse):</span>
-                                    <code className="text-fuchsia-300">GHOST (Tid &gt; 3s)</code>
+                                    <code className="text-fuchsia-300">GHOST (Tid &gt; 1.5s)</code>
                                 </div>
                             </div>
                             <div className="text-[10px] text-slate-400 italic leading-relaxed">
@@ -74,14 +74,14 @@ const VadDynamics: React.FC = () => {
                         <div>
                             <div className="flex justify-between mb-1">
                                 <strong className="text-white">ÅTERSTÄLLNING (Tripp/Dialog)</strong>
-                                <span className="text-green-400 font-bold">BASE_SIL (275ms)</span>
+                                <span className="text-green-400 font-bold">BASE_SIL (500ms)</span>
                             </div>
                             <div className="text-slate-500 mb-1">
                                 Villkor: <code className="text-slate-300">INGET TRYCK (Varken In eller Ut)</code>
                             </div>
                             <p className="text-[10px] text-slate-400 italic">
                                 Total jämvikt. Vi går in i "Ping-Pong"-läge med maximal responsivitet.
-                                <br/><span className="text-green-900/80">Ny SIL = 275ms</span>
+                                <br/><span className="text-green-900/80">Ny SIL = 500ms</span>
                             </p>
                         </div>
                     </div>
@@ -91,12 +91,12 @@ const VadDynamics: React.FC = () => {
                 <div className="bg-slate-950 p-4 rounded border border-slate-800 font-mono text-xs space-y-3">
                     <div className="text-rose-300 font-bold border-b border-slate-800 pb-2 text-xs flex justify-between">
                         <span>SÄKERHETSPÄRR: THE SQUEEZE</span>
-                        <span className="text-slate-500">Trigger: Taltid &gt; 20s</span>
+                        <span className="text-slate-500">Trigger: Taltid &gt; 4.0s</span>
                     </div>
 
                     <div className="flex items-center gap-4 pt-2">
                         <div className="text-[10px] text-slate-400 w-2/3">
-                            Oavsett vad TTT-logiken säger, tar "The Squeeze" över om en tur varar längre än 20 sekunder. Den tvingar ner toleransen linjärt mot 100ms för att garantera ett avbrott innan Googles 30s-gräns.
+                            Oavsett vad TTT-logiken säger, tar "The Squeeze" över om en tur varar längre än 4.0 sekunder. Den tvingar ner toleransen linjärt mot 150ms fram till Kill Zone vid 5.5s för att garantera ett blixtrande snabbt avbrott på max 6.0 sekunder.
                         </div>
                         <div className="w-1/3 h-1 bg-gradient-to-r from-yellow-500 to-red-600 rounded"></div>
                     </div>

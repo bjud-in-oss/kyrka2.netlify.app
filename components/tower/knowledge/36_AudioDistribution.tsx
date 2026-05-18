@@ -48,9 +48,8 @@ const AudioDistribution: React.FC = () => {
                             <strong>Nej.</strong> Webbläsare tillåter endast <code>window.open()</code> om det sker som direkt respons på ett användarklick (Trusted Event). Ett WebSocket-meddelande från en server räknas inte som ett användarklick.
                         </p>
                         <div className="bg-slate-900 p-2 rounded text-[10px] text-slate-400 border border-slate-700 mt-2">
-                            <strong>Lösning: Admin Dashboard</strong><br/>
-                            Vi bygger en vy där Admin ser: <em>"Förfrågan: Spanska (3 pers)"</em>.<br/>
-                            Admin klickar på en knapp "Starta Spanska". Då öppnas fliken, eftersom det är en mänsklig handling.
+                            <strong>Lösning: Lokal "Kvadrat 2"</strong><br/>
+                            Detta hanteras numera helt lokalt. Användaren klickar på appen/sidan för att välja sitt målspråk i gränssnittets "Kvadrat 2". Eftersom det är användarens egna klick är uppspelning och fönster tillåtet utan central styrning.
                         </div>
                     </div>
                 </div>
