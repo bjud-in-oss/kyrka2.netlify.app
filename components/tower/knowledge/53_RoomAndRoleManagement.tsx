@@ -5,35 +5,33 @@ const RoomAndRoleManagement: React.FC = () => {
         <section className="mb-12 animate-in fade-in slide-in-from-bottom-8 duration-500 delay-200">
             <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-3 border-b border-white/20 pb-1 flex items-center gap-2">
                 <span className="bg-white text-black px-2 rounded text-xs">MODUL 53</span>
-                Rum, Möten & Roller (State Specifikation)
+                53. Rumshantering & Decentraliserad Sändning
             </h3>
 
             <div className="bg-slate-900/80 p-5 rounded-xl border border-white/10 text-slate-300 text-sm space-y-8">
                 
-                {/* 1. SEPARATION AV ROLL OCH HÅRDVARA */}
+                {/* 1. DECENTRALISERAD SÄNDNING */}
                 <div className="space-y-4">
-                    <h4 className="text-purple-400 font-bold text-xs uppercase tracking-widest border-l-4 border-purple-500 pl-3">1. Separation av Roll och Hårdvara (Kritisk Arkitektur)</h4>
+                    <h4 className="text-purple-400 font-bold text-xs uppercase tracking-widest border-l-4 border-purple-500 pl-3">1. Friktionsfritt Flöde (Kontextuell Sändning)</h4>
                     <p className="text-xs text-slate-400 leading-relaxed">
-                        För att systemet ska vara flexibelt och skalbart har vi en stenhård separation mellan <strong>vem du är</strong> och <strong>vilken maskin du sitter vid</strong>.
+                        För att systemet ska vara flexibelt och skalbart har vi helt frångått principen om tvingande användarroller (som Admin eller Teacher) i URL:en. Sändarbehörighet är nu en <strong>kontextuell handling</strong>.
                     </p>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                         <div className="bg-purple-900/20 p-4 rounded border border-purple-500/30">
-                            <strong className="text-purple-300 text-[11px] block mb-2 border-b border-purple-500/30 pb-1">UserRole (Auktoritet)</strong>
+                            <strong className="text-purple-300 text-[11px] block mb-2 border-b border-purple-500/30 pb-1">Publishers (De som skapar/talar)</strong>
                             <ul className="text-[10px] text-slate-300 list-disc pl-4 space-y-2">
-                                <li><strong>Roller:</strong> Admin, Teacher eller Listener.</li>
-                                <li><strong>Styrning:</strong> Sätts via URL-parameter (t.ex. <code>?role=admin</code>).</li>
-                                <li><strong>Funktion:</strong> Styr ENDAST vilka UI-rättigheter du har (t.ex. knappar för att byta möte, Mute All).</li>
-                                <li><strong>Enhetsoberoende:</strong> En Admin eller Teacher kan köra appen på en mobiltelefon. Rollen har <em>ingenting</em> med ljudrouting att göra.</li>
+                                <li><strong>Handlingen:</strong> När någon klickar på "+ Skapa nytt rum" eller trycker in Push-to-Talk.</li>
+                                <li><strong>Status:</strong> Enheten blir automatiskt en "Publisher" till rummets SFU-kanal.</li>
+                                <li><strong>Decentralisering:</strong> Ingen roll tilldelas; åtgärden definierar sändaren. Vem som helst kan ta initiativet baserat på rummets sociala dynamik.</li>
                             </ul>
                         </div>
                         <div className="bg-blue-900/20 p-4 rounded border border-blue-500/30">
-                            <strong className="text-blue-300 text-[11px] block mb-2 border-b border-blue-500/30 pb-1">HardwareMode (Ljudrouting)</strong>
+                            <strong className="text-blue-300 text-[11px] block mb-2 border-b border-blue-500/30 pb-1">Subscribers (Lyssnare)</strong>
                             <ul className="text-[10px] text-slate-300 list-disc pl-4 space-y-2">
-                                <li><strong>Lägen:</strong> Simple eller Pro.</li>
-                                <li><strong>Styrning:</strong> Fysisk toggle-knapp i gränssnittet. Sparas i <code>localStorage</code> per enhet.</li>
-                                <li><strong>Funktion:</strong> Styr hur ljudet routas i webbläsaren (t.ex. stereosplit, AEC-inställningar).</li>
-                                <li><strong>Enhetsspecifikt:</strong> Detta är specifikt för den fysiska enhet som är inkopplad i PA-systemet (t.ex. en PC med Tesira).</li>
+                                <li><strong>Handlingen:</strong> När någon ansluter till rummet genom att scanna en QR-kod eller följa en länk.</li>
+                                <li><strong>Status:</strong> Enheten ställs in som "Subscriber" för att ta emot tolkningen.</li>
+                                <li><strong>Omställning:</strong> Om en lyssnare i rummet vill prata trycker de på mick-knappen och blir då kontextuellt en Publisher utan byråkrati.</li>
                             </ul>
                         </div>
                     </div>
@@ -41,23 +39,23 @@ const RoomAndRoleManagement: React.FC = () => {
 
                 {/* 2. KONCEPTET RUM */}
                 <div className="space-y-4 pt-4 border-t border-slate-800">
-                    <h4 className="text-blue-400 font-bold text-xs uppercase tracking-widest border-l-4 border-blue-500 pl-3">2. Konceptet "Rum" (SFU Rooms)</h4>
+                    <h4 className="text-blue-400 font-bold text-xs uppercase tracking-widest border-l-4 border-blue-500 pl-3">2. Konceptet "Rum" (Isolerade Audio-kanaler)</h4>
                     
                     <p className="text-xs text-slate-400 leading-relaxed">
-                        Systemet bygger på isolerade SFU-rum. En användare kan befinna sig i det stora publika rummet eller i ett mindre, privat rum.
+                        Ett "Rum" är i denna arkitektur en ren, isolerad kanal för strömning av ljud via moln-SFU. Inga states synkroniseras.
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                         <div className="bg-slate-950 p-3 rounded border border-slate-800">
                             <strong className="text-blue-400 text-xs block mb-1">Offentliga Rum (Huvudkyrkan)</strong>
                             <p className="text-[10px] text-slate-500">
-                                Fasta URL:er (t.ex. <code>/room/kapellet</code>). Här sker envägs-tolkning (Smart Broadcast).
+                                Fasta URL:er (t.ex. <code>/room/kapellet</code>). Här sker typiskt envägs-tolkning (Smart Broadcast).
                             </p>
                         </div>
                         <div className="bg-slate-950 p-3 rounded border border-slate-800">
                             <strong className="text-orange-400 text-xs block mb-1">Privata Diskussionsrum</strong>
                             <p className="text-[10px] text-slate-500">
-                                Unikt hash-ID (delas via QR). Flervägs-tolkning där alla deltagare kan tala.
+                                Unikt hash-ID (delas via QR). Flervägs-tolkning där alla deltagare kan tala fritt.
                             </p>
                         </div>
                     </div>
@@ -68,7 +66,7 @@ const RoomAndRoleManagement: React.FC = () => {
                     <h4 className="text-emerald-400 font-bold text-xs uppercase tracking-widest border-l-4 border-emerald-500 pl-3">3. Översättning av Rumsnamn (UI)</h4>
                     
                     <p className="text-xs text-slate-400 leading-relaxed">
-                        För att undvika onödiga nätverksanrop, API-kostnader och komplex SFU-synkronisering använder vi en statisk ordlista (i18n) snarare än AI för rumsnamn.
+                        För att undvika onödiga nätverksanrop och komplex synkronisering använder vi en statisk ordlista (i18n) för rumsnamn.
                     </p>
 
                     <div className="bg-emerald-900/10 p-4 rounded border border-emerald-500/20">
@@ -90,3 +88,4 @@ const RoomAndRoleManagement: React.FC = () => {
 };
 
 export default RoomAndRoleManagement;
+

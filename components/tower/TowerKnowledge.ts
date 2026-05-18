@@ -11,6 +11,21 @@ export const MODULE_DOCS: Record<string, ModuleDoc> = {
     'MODULE_LOGIC': LOGIC_DOC,
     'MODULE_AUDIO': AUDIO_DOC,
     'MODULE_CONFIG': CONFIG_DOC,
+    'MODULE_04': {
+        title: 'FAS 4: Frictionless UX & Unified SFU (Modul 04)',
+        description: 'Vår minimalistiska UI-princip baserad på "De Två Kvadraterna", helt utan tvingande nätverksstates.',
+        params: []
+    },
+    'MODULE_53': {
+        title: 'Rumshantering & Decentraliserad Sändning (Modul 53)',
+        description: 'Hur fysiska SFU-rum skapas via sändar-initiativ och delas lokalt via QR utan administrativa URL-roller.',
+        params: []
+    },
+    'MODULE_55': {
+        title: 'Room & Meeting UX (Modul 55)',
+        description: 'Det sociala ansvaret i kyrkan – inga Mute All-knappar, enbart "dum", supersnabb distribution av ljud.',
+        params: []
+    },
     'MODULE_VAD_DYNAMICS': {
         title: 'VAD Dynamics (Modul 14)',
         description: 'Avancerad logik för hur C_ELA, Q_LOG och C_SIL samverkar för att lösa "Paus-paradoxen".',
