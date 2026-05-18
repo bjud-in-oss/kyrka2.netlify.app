@@ -13,21 +13,21 @@ const VadHysteresisAnalysis: React.FC = () => {
                 {/* 1. STATUS UPDATE */}
                 <div>
                     <h4 className="text-white font-bold mb-3 flex items-center gap-2 text-sm">
-                        <span className="bg-green-500/20 text-green-300 px-2 py-0.5 rounded text-xs">IMPLEMENTERAD (v8.0)</span>
+                        <span className="bg-green-500/20 text-green-300 px-2 py-0.5 rounded text-xs">IMPLEMENTERAD (v9.0)</span>
                         Aktiv Logik i <code>useAudioInput</code>
                     </h4>
                     <p className="text-sm text-slate-400 mb-2">
-                        Denna logik är inte längre en hypotes. Den körs live i varje "Worker Result"-cykel. Systemet beräknar dynamiskt <code>ACTIVE_SIL</code> (Paus-tolerans) baserat på tre tillstånd:
+                        Denna logik är trimmad för vårt extremt snabba, 6-sekunders "Manual VAD"-fönster. Systemet beräknar dynamiskt <code>ACTIVE_SIL</code> (Paus-tolerans) baserat på tillstånd:
                     </p>
                     <ul className="list-disc list-inside text-sm text-slate-400 space-y-2 ml-1">
                         <li>
-                            <strong className="text-orange-300">Trull (Monolog):</strong> Aktiveras om <code>damPressure &gt; 0</code> (Full ut-buffert) ELLER <code>ghostPressure</code> (Tid &gt; 3s). Toleransen ökas kraftigt för att tillåta andningspauser.
+                            <strong className="text-orange-300">Trull (Monolog):</strong> Aktiveras om <code>ghostPressure</code> nås (Momentum Start &gt; 1.5s). Toleransen ställs till max <code>800ms</code> för att tillåta naturligt meningsflöde innan "The Squeeze".
                         </li>
                         <li>
                             <strong className="text-yellow-300">Trapp (Lyssna):</strong> Aktiveras om <code>jitterPressure &gt; 0.1s</code> (AI:n pratar). Toleransen halveras mjukt för att vi ska sluta prata snabbare om vi blir avbrutna.
                         </li>
                         <li>
-                            <strong className="text-green-300">Tripp (Dialog):</strong> Aktiveras vid noll tryck. Återgår till <code>275ms</code> för blixtsnabb ping-pong.
+                            <strong className="text-green-300">Tripp (Dialog):</strong> Vår standardnivå. Återgår till <code>500ms</code> – en aggressiv inställning för blixtsnabb ping-pong.
                         </li>
                     </ul>
                 </div>
@@ -36,15 +36,13 @@ const VadHysteresisAnalysis: React.FC = () => {
                 <div className="bg-slate-950 p-4 rounded border border-slate-800 text-xs font-mono text-slate-400 space-y-3">
                     <strong className="text-white border-b border-slate-700 pb-1 block">Kod-Implementering (Pseudokod)</strong>
                     <div className="space-y-1">
-                        <p><span className="text-blue-400">let</span> target = 275;</p>
-                        <p><span className="text-purple-400">if</span> (shieldBuffer.length &gt; 0) target = 2000; <span className="text-slate-600">// Trull (Dam)</span></p>
-                        <p><span className="text-purple-400">else if</span> (ghostActive) target = 1200; <span className="text-slate-600">// Trull (Ghost)</span></p>
-                        <p><span className="text-purple-400">else if</span> (bufferGap &gt; 0.1) target = C_SIL / 2; <span className="text-slate-600">// Trapp</span></p>
-                        <p><span className="text-slate-500">// Tripp är fallback (275ms)</span></p>
+                        <p><span className="text-blue-400">let</span> target = 500; <span className="text-slate-600">// Tripp</span></p>
+                        <p><span className="text-purple-400">if</span> (ghostActive) target = 800; <span className="text-slate-600">// Trull (Ghost, efter 1.5s)</span></p>
+                        <p><span className="text-purple-400">else if</span> (bufferGap &gt; 0.1) target = 250; <span className="text-slate-600">// Trapp (AI pratar)</span></p>
                     </div>
                     <div className="bg-red-900/10 p-2 rounded border border-red-500/20 mt-2">
                         <strong className="text-red-300">SQUEEZE (Nödstopp):</strong>
-                        <p>Om <code>speechDuration &gt; 20s</code>, tvingas target linjärt ner mot 100ms oavsett ovanstående logik.</p>
+                        <p>Eftersom vi har ett 6s-tak tvingas target linjärt ner mot 150ms mellan 4.0s och 5.5s för att förhindra klippta ord.</p>
                     </div>
                 </div>
 
