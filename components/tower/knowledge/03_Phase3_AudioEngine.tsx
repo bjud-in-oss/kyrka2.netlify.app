@@ -74,6 +74,28 @@ const Phase3AudioEngine: React.FC = () => {
                     </div>
                 </div>
 
+                {/* 5. MICRO-KRAV FÖR LJUDET */}
+                <div className="space-y-4 pt-4 border-t border-slate-800">
+                    <h4 className="text-blue-400 font-bold text-xs uppercase tracking-widest border-l-4 border-blue-500 pl-3">5. Micro-krav för Ljudet & VAD</h4>
+                    
+                    <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
+                        <ul className="text-[11px] text-slate-400 list-disc pl-4 space-y-3">
+                            <li>
+                                <strong className="text-blue-300 block mb-1">A. Pre-speech Buffer:</strong> 
+                                Mikrofonens <code>InputProcessor</code> (AudioWorklet) ska under tystnad skriva raw PCM till en rullande, cirkulär 300ms ringbuffer (4800 samples vid 16kHz). Vid <code>VAD = TRUE</code> skickas först <code>activityStart</code>, sedan spolas hela ringbufferns innehåll upp till Gemini i en klump, följt av live-strömmen.
+                            </li>
+                            <li>
+                                <strong className="text-blue-300 block mb-1">B. Stram 6s-säkerhetssax:</strong> 
+                                <code>MAX_TURN_DURATION</code> fixeras till 6000ms. Squeeze-logiken i <code>useAudioInput.ts</code> aktiveras vid 4.0 sekunder och stryper tystnadstoleransen linjärt ner till 150ms vid 5.5 sekunder.
+                            </li>
+                            <li>
+                                <strong className="text-blue-300 block mb-1">C. Explicit Signalering & Städning:</strong> 
+                                Vid tystnad (eller vid 6s-gränsen) skickas enbart en ren <code>activityEnd</code>-signal via <code>sendEndTurn()</code>. Alla gamla reliker av <code>SILENCE_BURST_B64</code> (800ms digitala nollor) och Puppeteer text-injektioner ska rensas ut ur källkoden då de ökar kostnad och latens.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div className="space-y-4 pt-4 border-t border-slate-800">
                     <div className="bg-red-900/20 p-4 rounded border border-red-500/40">
                         <h4 className="text-red-400 font-bold text-xs uppercase tracking-widest mb-2 flex items-center gap-2">

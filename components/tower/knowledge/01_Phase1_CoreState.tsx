@@ -17,13 +17,16 @@ const Phase1CoreState: React.FC = () => {
                     </p>
                 </div>
 
-                {/* 1. HÅRDVARUSTYRD ARKITEKTUR UTAN ROLLER */}
+                {/* 1. HÅRDVARUSTYRD ARKITEKTUR & SANERING */}
                 <div className="space-y-4">
-                    <h4 className="text-purple-400 font-bold text-xs uppercase tracking-widest border-l-4 border-purple-500 pl-3">1. Hårdvarustyrd Arkitektur Utan Roller</h4>
+                    <h4 className="text-purple-400 font-bold text-xs uppercase tracking-widest border-l-4 border-purple-500 pl-3">1. Hårdvarustyrd Arkitektur & Sanering</h4>
                     
                     <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
                         <p className="text-[11px] text-slate-300">
-                            Begreppet UserRole (Admin, Teacher, Listener) och URL-parametrar är helt borttagna. Appen litar på användarens kontext (t.ex. skapat rum vs scannat QR-kod) istället för tvingande användarroller.
+                            Ett primärt mål i denna fas är att helt avveckla och radera den gamla, onödigt komplexa Zustand-storen <code>src/stores/useAppStore.ts</code> samt den föråldrade ljudtjänsten <code>src/services/AudioService.ts</code>.
+                        </p>
+                        <p className="text-[11px] text-slate-300">
+                            Begreppet UserRole (Admin, Teacher, Listener) och URL-parametrar är helt borttagna. Appens tillstånd styrs nu helt decentraliserat av <code>useLiveConfig.ts</code> lokalt på enheten, utan nätverkssynkade användarroller.
                         </p>
                         
                         <div className="bg-black/30 p-3 rounded border border-blue-500/20">

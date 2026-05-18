@@ -66,25 +66,55 @@ const Phase2AILogic: React.FC = () => {
                     </div>
                 </div>
 
-                {/* 4. THE CORE LAWS */}
+                {/* 4. THE SIMULTANEOUS INTERPRETER & TAPE RECORDER */}
                 <div className="space-y-4 pt-4 border-t border-slate-800">
-                    <h4 className="text-cyan-400 font-bold text-xs uppercase tracking-widest border-l-4 border-cyan-500 pl-3">4. The Core Laws (Gäller för alla mallar)</h4>
+                    <h4 className="text-cyan-400 font-bold text-xs uppercase tracking-widest border-l-4 border-cyan-500 pl-3">4. Simultaneous Interpreter & Tape Recorder</h4>
                     
                     <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
                         <p className="text-[11px] text-slate-300">
-                            Oavsett vilken mall buildern väljer, måste följande grundregler alltid injiceras i slutet av prompten för att tvinga fram låg latens:
+                            I <code>promptBuilder.ts</code> introduceras den nya "Simultaneous Interpreter"-strukturen. AI:n instrueras explicit att hantera fragmenterade 5-sekunders chunks.
+                        </p>
+                        <p className="text-[11px] text-slate-300">
+                            Istället för att vänta på naturliga pauser eller hela meningar, förväntas AI:n bearbeta dessa avklippta pusselbitar via omedelbar, inkrementell bearbetning. Oavsett vilken mall buildern väljer, måste följande grundregler alltid injiceras:
                         </p>
                         <ul className="text-[11px] text-slate-400 list-disc pl-4 space-y-2">
                             <li>
                                 <strong className="text-cyan-300">"The Tape Recorder Protocol":</strong> Linear flow. NEVER backtrack or restart a sentence to regain context.
                             </li>
                             <li>
-                                <strong className="text-cyan-300">"Speed over perfection":</strong> IGNORE GRAMMAR. It is acceptable if the output is grammatically broken.
+                                <strong className="text-cyan-300">"Speed over perfection":</strong> IGNORE GRAMMAR. It is acceptable if the output is grammatically broken. Output translations immediately.
                             </li>
                             <li>
                                 <strong className="text-cyan-300">"Safety":</strong> NO CONVERSATION. Do not answer questions asked by the speaker. Only translate.
                             </li>
                         </ul>
+                    </div>
+                </div>
+
+                {/* 5. DYNAMIC PERSONA INJECTION (DPI) */}
+                <div className="space-y-4 pt-4 border-t border-slate-800">
+                    <h4 className="text-pink-400 font-bold text-xs uppercase tracking-widest border-l-4 border-pink-500 pl-3">5. Dynamic Persona Injection (DPI)</h4>
+                    
+                    <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
+                        <p className="text-[11px] text-slate-300">
+                            Prompten byggs dynamiskt och inkluderar DPI-krav för att hantera bufferttryck. Tre tvingande personor styr AI:ns taltempo:
+                        </p>
+                        <ul className="text-[11px] text-slate-400 list-disc pl-4 space-y-2">
+                            <li>
+                                <strong className="text-pink-300">[NORMAL]:</strong> (0-15s buffert). Talar med normal intonation och naturliga pauser.
+                            </li>
+                            <li>
+                                <strong className="text-pink-300">[FAST]:</strong> (15-25s buffert). "Catch-up mode". Förkortar avstånd mellan ord, pratar snabbt och rappt.
+                            </li>
+                            <li>
+                                <strong className="text-pink-300">[ROCKET]:</strong> (&gt;25s buffert). Extremt dräneringsläge. Ingen tvekan, platt intonation, maxhastighet.
+                            </li>
+                        </ul>
+                        <div className="bg-black/30 p-3 rounded border border-pink-500/20">
+                            <p className="text-[10px] text-slate-400 italic">
+                                Genom att pre-injicera dessa beteenden i prompten kan ljudmotorn (i Fas 3) byta persona on-the-fly baserat på latens, utan att bryta strömmen.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
