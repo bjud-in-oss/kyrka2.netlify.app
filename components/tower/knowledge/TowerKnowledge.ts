@@ -158,6 +158,15 @@ export const MODULE_DOCS: Record<string, ModuleDoc> = {
             { abbr: 'CAM', full: 'AI Director', desc: 'Multimodal AI styr PTZ-kameror via VISCA över IP.' },
             { abbr: 'IMG', full: 'Ken Burns', desc: 'Smarta stillbilder (5-10s) med AI-klippning för gratisnivån.' }
         ]
+    },
+    'MODULE_MANUAL_VAD': {
+        title: 'Manual VAD & Prompt (Modul 60)',
+        description: 'Genomgång av inaktiverad server-VAD och tillhörande Prompt-arkitektur för fragmenterat ljud.',
+        params: [
+            { abbr: 'VAD', full: 'Manual VAD', desc: 'Serverns VAD inaktiverad. Klienten hanterar klipp direkt.' },
+            { abbr: 'FRG', full: 'Fragmentation', desc: 'AI är instruerad att sömlöst hantera 5s brustna meningar.' },
+            { abbr: 'DPI', full: 'Persona', desc: 'NORMAL, FAST och ROCKET stöds direkt i prompten.' }
+        ]
     }
 };
 
@@ -298,6 +307,15 @@ const PROTOCOL_ENTRIES: Record<string, KnowledgeEntry> = {
         affects: [{ id: 'WS', desc: 'Initierar' }],
         affectedBy: [{ id: 'P_BUILD', desc: 'Byggd av' }],
         x: 40, y: 40
+    },
+    'MANUAL_VAD': {
+        title: 'Manual VAD Protocol (Modul 60)',
+        text: 'Avaktiverar serverns inbyggda VAD via realtimeInputConfig. Kombineras med en systemprompt som är specifikt skriven för att hantera fragmenterade 5s-klipp utan stamning.',
+        good: 'Disabled',
+        tags: ['AI', 'LOGIC'],
+        affects: [{ id: 'WS', desc: 'Bypassar inbyggd VAD' }, { id: 'SYS_P', desc: 'Omformulerar' }],
+        affectedBy: [],
+        x: 55, y: 30
     }
 };
 
