@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import RoomSelectorModal from './RoomSelectorModal';
-import { useTabCoordination } from '../hooks/useTabCoordination';
 
 interface HeaderControlsProps {
   currentRoom: string;
@@ -76,8 +75,6 @@ const HeaderControls: React.FC<HeaderControlsProps> = ({
   const [placeholderLang, setPlaceholderLang] = useState("");
   const shuffledIndicesRef = useRef<number[]>([]);
   const currentIndexRef = useRef(0);
-
-  const { otherTabs } = useTabCoordination(currentRoom, [userLanguage]);
 
   const handleLangClick = () => {
     if (isHeroMode) {
