@@ -16,30 +16,73 @@ const MasterDevelopmentPlan: React.FC = () => {
                     </p>
                 </div>
 
-                {/* FASERNA */}
+                {/* ARBETSMETODIK */}
                 <div className="space-y-4">
-                    <h4 className="text-blue-400 font-bold text-xs uppercase tracking-widest border-l-4 border-blue-500 pl-3">Faserna (Se respektive fil för detaljer)</h4>
+                    <h4 className="text-yellow-400 font-bold text-xs uppercase tracking-widest border-l-4 border-yellow-500 pl-3">Arbetsmetodik: Agil Dokumentationsdriven Utveckling</h4>
+                    <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
+                        <p className="text-[11px] text-slate-300">
+                            Vår <strong>"Context Priming"</strong>-process är hjärtat i vår utveckling. Genom att etablera sanningen i dokumentationen först, eliminerar vi gissningar vid nästa kodgenerering:
+                        </p>
+                        <ol className="text-[11px] text-slate-400 list-decimal pl-4 space-y-2">
+                            <li><strong>Identifiera problem.</strong></li>
+                            <li><strong>Skalpellsignal:</strong> Uppdatera Tower-dokumentationen först för att skapa en entydig plan.</li>
+                            <li><strong>Lås kontexten:</strong> Stäng chatten/sessionen för att återställa AI:ns "minne".</li>
+                            <li><strong>Skriv koden:</strong> Starta en ny session. AI:n tvingas nu läsa och följa den nyligen uppdaterade lagboken exakt, utan "spöken" från gamla resonemang.</li>
+                            <li>
+                                <strong>Chain of Thought (CoT):</strong> Använd alltid CoT vid komplexa nätverksändringar. 
+                                <br/><em className="text-yellow-300/80 mt-1 block">Syftet med CoT är att strukturera resonemanget och få AI:n att steg-för-steg tänka igenom konsekvenserna av varje ändring innan koden skrivs. Genom att dela upp processen i flera successiva prompter undviker vi att AI:n hastar fram en ogenomtänkt lösning och vi behåller en knivskarp röd tråd genom enorma mängder kontext. När uppgiften bär på hundratals rader logik stannar AI:n kvar "på spåret" genom att explicit tvingas redovisa sin tankekedja inför varje handling.</em>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                {/* FASERNA */}
+                <div className="space-y-4 pt-4 border-t border-slate-800">
+                    <h4 className="text-blue-400 font-bold text-xs uppercase tracking-widest border-l-4 border-blue-500 pl-3">Den Agila Utförandeplanen (Fas 1-4)</h4>
                     
                     <div className="grid grid-cols-1 gap-3">
-                        <div className="bg-slate-950 p-3 rounded border border-slate-800 flex flex-col sm:flex-row sm:items-center gap-2">
-                            <span className="bg-blue-900/30 text-blue-300 px-2 py-1 rounded text-[10px] font-mono border border-blue-500/30 whitespace-nowrap">01_Phase1_CoreState.tsx</span>
-                            <span className="text-[11px] text-slate-400">Zustand Store, Rum & Minneshantering</span>
+                        <div className="bg-slate-950 p-3 rounded border border-slate-800">
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
+                                <span className="bg-blue-900/30 text-blue-300 px-2 py-1 rounded text-[10px] font-mono border border-blue-500/30 whitespace-nowrap">Fas 1: UX-Minimalism</span>
+                            </div>
+                            <span className="text-[11px] text-slate-400 leading-relaxed block">(Se Modul 01 och Modul 04 för detaljer). UI i App.tsx, borttagning av roller och DataChannels.</span>
                         </div>
                         
-                        <div className="bg-slate-950 p-3 rounded border border-slate-800 flex flex-col sm:flex-row sm:items-center gap-2">
-                            <span className="bg-purple-900/30 text-purple-300 px-2 py-1 rounded text-[10px] font-mono border border-purple-500/30 whitespace-nowrap">02_Phase2_AILogic.tsx</span>
-                            <span className="text-[11px] text-slate-400">Prompt Engineering & Språk-kontext</span>
+                        <div className="bg-slate-950 p-3 rounded border border-slate-800">
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
+                                <span className="bg-purple-900/30 text-purple-300 px-2 py-1 rounded text-[10px] font-mono border border-purple-500/30 whitespace-nowrap">Fas 2: Prompt & AI Logic</span>
+                            </div>
+                            <span className="text-[11px] text-slate-400 leading-relaxed block">(Se Modul 02 och Modul 51). Uppdatering av promptBuilder.ts med DPI och Simultaneous Interpreter-logik.</span>
                         </div>
                         
-                        <div className="bg-slate-950 p-3 rounded border border-slate-800 flex flex-col sm:flex-row sm:items-center gap-2">
-                            <span className="bg-orange-900/30 text-orange-300 px-2 py-1 rounded text-[10px] font-mono border border-orange-500/30 whitespace-nowrap">03_Phase3_AudioEngine.tsx</span>
-                            <span className="text-[11px] text-slate-400">Web Audio API, The Pro Split & AEC</span>
+                        <div className="bg-slate-950 p-3 rounded border border-slate-800">
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
+                                <span className="bg-orange-900/30 text-orange-300 px-2 py-1 rounded text-[10px] font-mono border border-orange-500/30 whitespace-nowrap">Fas 3: Ljudmotorn</span>
+                            </div>
+                            <span className="text-[11px] text-slate-400 leading-relaxed block">(Se Modul 03, Modul 11 och Modul 14 för exakta tids-värden). Rulla in 300ms ringbuffer, 6s max-limit, The Squeeze och byt ut Silence Bursts mot explicit activityEnd.</span>
                         </div>
                         
-                        <div className="bg-slate-950 p-3 rounded border border-slate-800 flex flex-col sm:flex-row sm:items-center gap-2">
-                            <span className="bg-pink-900/30 text-pink-300 px-2 py-1 rounded text-[10px] font-mono border border-pink-500/30 whitespace-nowrap">04_Phase4_UX.tsx</span>
-                            <span className="text-[11px] text-slate-400">Frictionless UI & Unified SFU</span>
+                        <div className="bg-slate-950 p-3 rounded border border-slate-800">
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
+                                <span className="bg-pink-900/30 text-pink-300 px-2 py-1 rounded text-[10px] font-mono border border-pink-500/30 whitespace-nowrap">Fas 4: Unified SFU</span>
+                            </div>
+                            <span className="text-[11px] text-slate-400 leading-relaxed block">(Se Modul 52). Gör SFU:n till en dum radiomast och skrota P2P-state.</span>
                         </div>
+                    </div>
+                </div>
+
+                {/* SANERING */}
+                <div className="space-y-4 pt-4 border-t border-slate-800">
+                    <h4 className="text-red-400 font-bold text-xs uppercase tracking-widest border-l-4 border-red-500 pl-3">Kritisk Kod-Sanering (Död Kod)</h4>
+                    
+                    <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
+                        <p className="text-[11px] text-slate-300">
+                            Följande föråldrade filer betraktas som skräp och <strong>SKA RADERAS</strong> eller helt ignoreras under återuppbyggnaden:
+                        </p>
+                        <ul className="text-[11px] text-slate-400 list-disc pl-4 space-y-2 font-mono">
+                            <li className="text-red-300/80">src/stores/useAppStore.ts <span className="text-slate-500 italic">(Ersätts av lokalt state)</span></li>
+                            <li className="text-red-300/80">src/services/AudioService.ts <span className="text-slate-500 italic">(Ersätts av useAudioInput/Output)</span></li>
+                        </ul>
                     </div>
                 </div>
 
