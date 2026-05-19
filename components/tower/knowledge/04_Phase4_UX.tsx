@@ -45,18 +45,18 @@ const Phase1UX: React.FC = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
                             <div className="bg-black/30 p-3 rounded border border-blue-500/20">
-                                <strong className="text-blue-300 text-[11px] block mb-2 border-b border-blue-500/30 pb-1">Kvadrat 1: Rum</strong>
+                                <strong className="text-blue-300 text-[11px] block mb-2 border-b border-blue-500/30 pb-1">Kvadrat 1: Rum (3D Flip)</strong>
                                 <ul className="text-[10px] text-slate-400 space-y-2">
-                                    <li>Visar en stor vit QR-kod med svart mönster centrerat. Rummets namn står diskret under.</li>
-                                    <li>När kvadraterna klickas på, fylls skärmen av en overlay där man väljer rum, mikrofon och slår på "Pro Mode".</li>
+                                    <li><strong>Framsida (Front):</strong> Visar en stor vit QR-kod med svart mönster centrerat. Rummets namn står diskret under.</li>
+                                    <li><strong>Baksida (Back):</strong> Vid klick vänder kvadraten (3D-flip). Här visas Rumslistan, mikrofon-val och "Pro Mode".</li>
                                 </ul>
                             </div>
                             <div className="bg-black/30 p-3 rounded border border-purple-500/20">
-                                <strong className="text-purple-300 text-[11px] block mb-2 border-b border-purple-500/30 pb-1">Kvadrat 2: Språk</strong>
+                                <strong className="text-purple-300 text-[11px] block mb-2 border-b border-purple-500/30 pb-1">Kvadrat 2: Språk (3D Flip)</strong>
                                 <ul className="text-[10px] text-slate-400 space-y-2">
-                                    <li>Visar det valda lyssningsspråket i massiv text (t.ex. "Svenska").</li>
-                                    <li>Vid klick visas en lista med språk.</li>
-                                    <li>När ett språk väljs, stängs listan OCH systemet anropar automatiskt <code>connect()</code> för att starta.</li>
+                                    <li><strong>Framsida (Front):</strong> Visar det valda lyssningsspråket i massiv text (t.ex. "Svenska").</li>
+                                    <li><strong>Baksida (Back):</strong> Vid klick vänder kvadraten och visar en interaktiv lista med språk.</li>
+                                    <li>När ett språk väljs, flippar kortet av sig självt tillbaka OCH systemet anropar automatiskt <code>connect()</code> för att starta.</li>
                                 </ul>
                             </div>
                         </div>

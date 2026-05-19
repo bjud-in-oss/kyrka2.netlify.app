@@ -52,6 +52,28 @@ const DashboardGeometryUX: React.FC = () => {
                         </ul>
                     </div>
                 </div>
+
+                {/* 3. SPECIFIKATION FÖR 3D CARD FLIP */}
+                <div className="space-y-4 pt-4 border-t border-slate-800">
+                    <h4 className="text-emerald-400 font-bold text-xs uppercase tracking-widest border-l-4 border-emerald-500 pl-3">3. Specifikation för 3D Card Flip</h4>
+                    
+                    <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
+                        <p className="text-[11px] text-slate-300 leading-relaxed">
+                            Kvadraterna i Lobbyn är inte platta overlays, utan 3D-kort som snurrar 180 grader. Detta ska byggas med ren Tailwind CSS utan externa animationsbibliotek (t.ex. Framer Motion) för att bevara prestanda.
+                        </p>
+                        <ul className="text-[11px] text-slate-400 list-disc pl-4 space-y-2">
+                            <li>
+                                <strong className="text-emerald-300">Yttre Container:</strong> Måste tilldela 3D-djup genom z-axelns perspektiv, t.ex. <code>perspective-1000</code>.
+                            </li>
+                            <li>
+                                <strong className="text-emerald-300">Inre Card Container:</strong> Styr rotationen och kräver klasserna <code>relative preserve-3d transition-transform duration-500</code>. När användaren klickar roteras div:en smidigt med <code>rotate-y-180</code>.
+                            </li>
+                            <li>
+                                <strong className="text-emerald-300">Front & Back (Ytor):</strong> Båda sidorna positioneras med <code>absolute inset-0 backface-hidden</code>. Baksidan har utöver det klassen <code>rotate-y-180</code> från början, så att den är dold tills den inre containern roterar.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
     );
