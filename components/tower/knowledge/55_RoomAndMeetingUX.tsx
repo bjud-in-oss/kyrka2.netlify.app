@@ -5,7 +5,7 @@ const DashboardGeometryUX: React.FC = () => {
         <section className="mb-12 animate-in fade-in slide-in-from-bottom-8 duration-500 delay-200">
             <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-3 border-b border-white/20 pb-1 flex items-center gap-2">
                 <span className="bg-white text-black px-2 rounded text-xs">MODUL 55</span>
-                Dashboard-Geometri & Tvåskärms-interaktion
+                55. Dashboard-Geometri & Taktil Interaktion
             </h3>
 
             <div className="bg-slate-900/80 p-5 rounded-xl border border-white/10 text-slate-300 text-sm space-y-8">
@@ -53,23 +53,42 @@ const DashboardGeometryUX: React.FC = () => {
                     </div>
                 </div>
 
-                {/* 3. SPECIFIKATION FÖR 3D CARD FLIP */}
+                {/* 3. SPECIFIKATION FÖR RUBIKS KUB-MEKANIK */}
                 <div className="space-y-4 pt-4 border-t border-slate-800">
-                    <h4 className="text-emerald-400 font-bold text-xs uppercase tracking-widest border-l-4 border-emerald-500 pl-3">3. Specifikation för 3D Card Flip</h4>
+                    <h4 className="text-emerald-400 font-bold text-xs uppercase tracking-widest border-l-4 border-emerald-500 pl-3">3. Specifikation för Rubiks Kub-mekanik</h4>
                     
                     <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
                         <p className="text-[11px] text-slate-300 leading-relaxed">
-                            Kvadraterna i Lobbyn är inte platta overlays, utan 3D-kort som snurrar 180 grader. Detta ska byggas med ren Tailwind CSS utan externa animationsbibliotek (t.ex. Framer Motion) för att bevara prestanda.
+                            Kvadraterna i Lobbyn är inte platta overlays, utan flersidiga 3D-kuber (Rubiks kuber) som navigeras genom att rotera dem. All navigation sker inuti den kvadratiska ytan. Inga 2D-overlays är tillåtna.
                         </p>
                         <ul className="text-[11px] text-slate-400 list-disc pl-4 space-y-2">
                             <li>
-                                <strong className="text-emerald-300">Yttre Container:</strong> Måste tilldela 3D-djup genom z-axelns perspektiv, t.ex. <code>perspective-1000</code>.
+                                <strong className="text-emerald-300">Kub-Navigation:</strong> All navigation sker genom att ändra rotationen i 3D (exempelvis <code>rotate-y-90</code>, <code>rotate-y-180</code> etc) inuti en container med <code>aspect-square</code>.
                             </li>
                             <li>
-                                <strong className="text-emerald-300">Inre Card Container:</strong> Styr rotationen och kräver klasserna <code>relative preserve-3d transition-transform duration-500</code>. När användaren klickar roteras div:en smidigt med <code>rotate-y-180</code>.
+                                <strong className="text-emerald-300">Konstruktion:</strong> Byggs med Tailwind CSS såsom <code>perspective-1000</code> på föräldern, och <code>relative preserve-3d transition-transform duration-500</code> på kub-elementet. Sidorna placeras absolut med <code>backface-hidden</code> och korrekta vinklar (0, 90, 180, 270 grader).
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                {/* 4. ORDLÖS IKEA-INSTRUKTION FÖR PRO MODE */}
+                <div className="space-y-4 pt-4 border-t border-slate-800">
+                    <h4 className="text-yellow-400 font-bold text-xs uppercase tracking-widest border-l-4 border-yellow-500 pl-3">4. Ordlös IKEA-instruktion för Pro Mode</h4>
+                    
+                    <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
+                        <p className="text-[11px] text-slate-300 leading-relaxed">
+                            På Rums-kubens Sida 4 visas "Pro Mode", som dikterar hårdvaru-routing i systemet. Denna vy är <strong>helt ordlös</strong>, i sann IKEA-anda.
+                        </p>
+                        <ul className="text-[11px] text-slate-400 list-disc pl-4 space-y-2">
+                            <li>
+                                <strong>Grafiskt Flödesdiagram:</strong> Ett rent diagram med symboler/Lucide-ikoner utan förklarande text. Sekvensen är: <code>[Mikrofon] -&gt; [Extern DSP Box] -&gt; [USB] -&gt; [Dator/App]</code>.
                             </li>
                             <li>
-                                <strong className="text-emerald-300">Front & Back (Ytor):</strong> Båda sidorna positioneras med <code>absolute inset-0 backface-hidden</code>. Baksidan har utöver det klassen <code>rotate-y-180</code> från början, så att den är dold tills den inre containern roterar.
+                                <strong>Webbläsarens AEC Avstängd:</strong> Diagrammet visar ett stort rött X (kryss) över webbläsarens inbyggda brusreducerings/filter-ikon för att förklara att appens AEC (Acoustic Echo Cancellation) stängs av i detta läge. 
+                            </li>
+                            <li>
+                                <strong>Checkbox:</strong> Endast formell interaktion är en Checkbox (eller Switch) för Pro Mode.
                             </li>
                         </ul>
                     </div>

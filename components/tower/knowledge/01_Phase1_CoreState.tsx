@@ -30,9 +30,9 @@ const Phase1CoreState: React.FC = () => {
                         </p>
                         
                         <div className="bg-black/30 p-3 rounded border border-blue-500/20">
-                            <strong className="text-blue-300 text-[11px] block mb-1">HardwareMode (Ljudrouting):</strong>
+                            <strong className="text-blue-300 text-[11px] block mb-1">HardwareMode (Ljudrouting) & Rums-minne:</strong>
                             <p className="text-[10px] text-slate-400">
-                                Det enda state som påverkar ljudarkitekturen är HardwareMode (Simple/Pro). Detta styrs via en lokal enhetsinställning (sparas i localStorage). Den avgör huruvida appen gör en avancerad stereosplit ut i PA-systemet eller inte.
+                                Ljudinställningarna (Input-enhet, Output-enhet och valt ProMode/SimpleMode) <strong>MÅSTE kommas ihåg</strong> (via localStorage) och <strong>knytas till det specifika Rums-ID:t</strong>. En användare ska aldrig behöva konfigurera mikrofonen på nytt när de startar samma rum igen. All hårdvarukonfiguration ska existera under denna domän.
                             </p>
                         </div>
                     </div>

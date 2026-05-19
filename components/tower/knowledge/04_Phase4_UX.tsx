@@ -36,27 +36,30 @@ const Phase1UX: React.FC = () => {
                     <h4 className="text-purple-400 font-bold text-xs uppercase tracking-widest border-l-4 border-purple-500 pl-3">Skärm 1 (Lobbyn) - Geometri & Innehåll</h4>
                     
                     <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
-                        <p className="text-[11px] text-slate-300 font-bold mb-2 border-b border-purple-500/30 pb-1">Layout</p>
+                        <p className="text-[11px] text-slate-300 font-bold mb-2 border-b border-purple-500/30 pb-1">Layout & Kub-mekanik (Cube Rotation)</p>
                         <ul className="text-[10px] text-slate-400 space-y-2 mb-4">
                             <li>Fyller exakt skärmen (100dvh).</li>
                             <li>Innehåller ENDAST två stora geometriska kvadrater (aspect-square) i mitten, samt en knapp i nedre högra hörnet.</li>
                             <li>Vid rotation (t.ex. på mobilen) ändrar kvadraterna inte form (de förblir kuber), de bara staplas/placeras om av Flexbox/Grid.</li>
+                            <li>Inga 2D-overlays! All interaktion sker genom att användaren roterar sig djupare in i inställningarna genom kubens olika sidor (rotate-y).</li>
                         </ul>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
                             <div className="bg-black/30 p-3 rounded border border-blue-500/20">
-                                <strong className="text-blue-300 text-[11px] block mb-2 border-b border-blue-500/30 pb-1">Kvadrat 1: Rum (3D Flip)</strong>
+                                <strong className="text-blue-300 text-[11px] block mb-2 border-b border-blue-500/30 pb-1">Kvadrat 1: Rums-Kuben</strong>
                                 <ul className="text-[10px] text-slate-400 space-y-2">
-                                    <li><strong>Framsida (Front):</strong> Visar en stor vit QR-kod med svart mönster centrerat. Rummets namn står diskret under.</li>
-                                    <li><strong>Baksida (Back):</strong> Vid klick vänder kvadraten (3D-flip). Här visas Rumslistan, mikrofon-val och "Pro Mode".</li>
+                                    <li><strong>Sida 1 (Front):</strong> Visar QR-kod och Rums-ID. Inga frågetecken eller hjälptexter.</li>
+                                    <li><strong>Sida 2 (Active Rooms):</strong> Vid klick roterar kuben. Visar ENDAST aktiva/redan startade rum. Längst ner: Knapp [+ Lägg till rum].</li>
+                                    <li><strong>Sida 3 (Audio Config):</strong> Om man lägger till rum roterar kuben igen. Visar ALLA tillgängliga ljudenheter (Mikrofon/Högtalare), inte bara standard. Valen måste sparas i minnet specifikt för detta rum. Längst ner: Knapp [Avancerat: Pro Mode].</li>
+                                    <li><strong>Sida 4 (Pro Mode):</strong> Slutgiltig rotation. Visar den ordlösa IKEA-grafiken för hårdvaru-routing och en Checkbox för Pro Mode.</li>
                                 </ul>
                             </div>
                             <div className="bg-black/30 p-3 rounded border border-purple-500/20">
-                                <strong className="text-purple-300 text-[11px] block mb-2 border-b border-purple-500/30 pb-1">Kvadrat 2: Språk (3D Flip)</strong>
+                                <strong className="text-purple-300 text-[11px] block mb-2 border-b border-purple-500/30 pb-1">Kvadrat 2: Språk-Kuben</strong>
                                 <ul className="text-[10px] text-slate-400 space-y-2">
-                                    <li><strong>Framsida (Front):</strong> Visar det valda lyssningsspråket i massiv text (t.ex. "Svenska").</li>
-                                    <li><strong>Baksida (Back):</strong> Vid klick vänder kvadraten och visar en interaktiv lista med språk.</li>
-                                    <li>När ett språk väljs, flippar kortet av sig självt tillbaka OCH systemet anropar automatiskt <code>connect()</code> för att starta.</li>
+                                    <li><strong>Sida 1 (Front):</strong> Valt språk. Symbolen ska MÅSTE vara 文A (Kinesiskt tecken + A). Ingen jordglob.</li>
+                                    <li><strong>Sida 2 (Active Languages):</strong> Visar endast de max 4 språk som är aktiva i sessionen (inkl. originalljudet). Knapp: [+ Sök språk].</li>
+                                    <li><strong>Sida 3 (All Languages):</strong> Sökbar lista. Vid val roterar kuben tillbaka till Sida 1 och <code>connect()</code> anropas omedelbart.</li>
                                 </ul>
                             </div>
                         </div>
@@ -108,7 +111,7 @@ const Phase1UX: React.FC = () => {
                             <span>⚠️</span> ARBETSREGEL FÖR DENNA FIL
                         </h4>
                         <p className="text-[11px] text-red-200 leading-relaxed font-medium">
-                            Denna fil dikterar appens geometri och övergripande layout. Följ specifikationerna exakt.
+                            Denna fil dikterar appens geometri och övergripande layout. Följ specifikationerna exakt. Inga fula 2D-overlays är tillåtna.
                         </p>
                     </div>
                 </div>
