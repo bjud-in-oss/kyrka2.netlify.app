@@ -52,6 +52,32 @@ const DashboardGeometryUX: React.FC = () => {
                         </ul>
                     </div>
                 </div>
+
+                {/* 3. 3D CARD FLIP */}
+                <div className="space-y-4 pt-4 border-t border-slate-800">
+                    <h4 className="text-cyan-400 font-bold text-xs uppercase tracking-widest border-l-4 border-cyan-500 pl-3">3. Specifikation för 3D Card Flip</h4>
+                    
+                    <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
+                        <p className="text-[11px] text-slate-300 leading-relaxed">
+                            Kvadraterna i Lobbyn animeras genom en äkta 3D Card Flip för att bevara minimalismen. <strong>Inga modaler eller overlays används för kvadraternas interaktion.</strong> Du MÅSTE använda standard Tailwind CSS för detta, inga tunga 3D-bibliotek.
+                        </p>
+                        <p className="text-[11px] text-slate-300 font-bold mb-2 border-b border-cyan-500/30 pb-1">Tekniska Tailwind-krav:</p>
+                        <ul className="text-[11px] text-slate-400 list-disc pl-4 space-y-2">
+                            <li>
+                                <strong className="text-cyan-300">Yttre Container (Scene):</strong> 
+                                Måste ha klassen <code>perspective-[1000px]</code> (eller likvärdig Tailwind perspective) för att ge 3D-djup till flippen. Den sätter även <code>aspect-square</code>.
+                            </li>
+                            <li>
+                                <strong className="text-cyan-300">Inre Container (Kortet):</strong> 
+                                Måste ha attributen <code>relative w-full h-full transition-transform duration-500 preserve-3d</code>. Vid klick togglas tillståndet så att komponenten får klassen <code>rotate-y-180</code>.
+                            </li>
+                            <li>
+                                <strong className="text-cyan-300">Ytor (Front & Back):</strong> 
+                                Både framsida och baksida är <code>absolute inset-0 backface-hidden</code>. Baksidan startar med <code>rotate-y-180</code> tvingad.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
     );
