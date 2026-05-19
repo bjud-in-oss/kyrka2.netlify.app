@@ -1,86 +1,60 @@
 import React from 'react';
 
-const RoomAndMeetingUX: React.FC = () => {
+const DashboardGeometryUX: React.FC = () => {
     return (
         <section className="mb-12 animate-in fade-in slide-in-from-bottom-8 duration-500 delay-200">
             <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-3 border-b border-white/20 pb-1 flex items-center gap-2">
                 <span className="bg-white text-black px-2 rounded text-xs">MODUL 55</span>
-                Room & Meeting UX
+                Dashboard-Geometri & Tvåskärms-interaktion
             </h3>
 
             <div className="bg-slate-900/80 p-5 rounded-xl border border-white/10 text-slate-300 text-sm space-y-8">
                 
-                {/* 1. FYSISKA RUM VS DIGITALA MÖTEN */}
+                {/* 1. ASPECT-SQUARE & ROTATIONSPROBLEMET */}
                 <div className="space-y-4">
-                    <h4 className="text-indigo-400 font-bold text-xs uppercase tracking-widest border-l-4 border-indigo-500 pl-3">1. Fysiska Rum och SFU-kanaler</h4>
+                    <h4 className="text-indigo-400 font-bold text-xs uppercase tracking-widest border-l-4 border-indigo-500 pl-3">1. Aspect-Square & Rotationsproblemet</h4>
                     
                     <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
                         <p className="text-[11px] text-slate-300 leading-relaxed">
-                            Systemet använder URL:en för att definiera det rumsliga sammanhanget, utan att synkronisera digitala "Mötestillstånd" över applikationen.
+                            För att lösa problemet med hur appen beter sig när en användare roterar sin mobil, bygger vi layouten kring strikta geometriska kuber. 
                         </p>
                         <ul className="text-[11px] text-slate-300 list-disc pl-4 space-y-2">
                             <li>
-                                <strong className="text-indigo-300">Fysiskt Rum (URL):</strong> 
-                                URL:en kopplar till ett isolerat Cloudflare SFU-rum, till exempel <code>/room/kapellet</code>. Detta gör att användare kan bokmärka eller scanna en fast QR-kod vid dörren.
+                                <strong className="text-indigo-300">CSS aspect-square:</strong> 
+                                Båda "Kvadraterna" (De stora interaktionszonerna i Lobbyn) måste använda Tailwind-klassen <code>aspect-square</code>. Detta tvingar dem att förbli perfekta kvadrater.
                             </li>
                             <li>
-                                <strong className="text-indigo-300">Inga Globala Mötestillstånd:</strong> 
-                                Det finns inga DataChannels som tvingar alla i rummet byta UI eller språk på en gång. All interaktion styrs av varje enskild enhet decentraliserat.
+                                <strong className="text-indigo-300">Flex/Grid Reflow:</strong> 
+                                Istället för att appen ska behöva krympa/förvränga UI-elementen, låter vi kvadraterna staplas vertikalt (Portrait) eller sida-vid-sida (Landscape) mjukt via standard Flexbox/Grid-reflow.
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                {/* 2. DECENTRALISERAD SAMTALSLOGIK */}
+                {/* 2. AUDIO PILLRET */}
                 <div className="space-y-4 pt-4 border-t border-slate-800">
-                    <h4 className="text-pink-400 font-bold text-xs uppercase tracking-widest border-l-4 border-pink-500 pl-3">2. Decentraliserad Samtalslogik</h4>
+                    <h4 className="text-pink-400 font-bold text-xs uppercase tracking-widest border-l-4 border-pink-500 pl-3">2. Audio Pillret (Toppen)</h4>
                     
                     <div className="bg-slate-950 p-4 rounded border border-slate-800 space-y-3">
                         <p className="text-[11px] text-slate-300 leading-relaxed">
-                            Eftersom SFU:n är en "dum" och oerhört snabb ljudfördelare styrs interaktionen helt och hållet av de fysiska och sociala reglerna i rummet. Ingen mjukvara tvingar fram mute-states.
+                            När <code>isLive === true</code> försvinner kvadraterna, och vi introducerar en piller-formad UI komponent högst upp på skärmen.
                         </p>
                         <ul className="text-[11px] text-slate-400 list-disc pl-4 space-y-2">
                             <li>
-                                <strong className="text-pink-300">Individansvar:</strong> Deltagaren kontrollerar enbart sin egen mikrofon (Kvadrat 1). Du trycker för att sända ut ditt ljud. 
+                                <strong className="text-pink-300">Visuell Stil:</strong> <code>bg-slate-900/80 backdrop-blur rounded-full</code> centrerat i toppen ovanför översättningstexten.
                             </li>
                             <li>
-                                <strong className="text-pink-300">Ingen "Mute All" Mjukvara:</strong> Till skillnad från appar som Zoom existerar inga nätverkssynkade <code>Mute All</code> eller <code>handRaised</code>-kommandoköer. Moderering sker genom handuppräckning fysiskt i kyrkan.
+                                <strong className="text-pink-300">Ikoner utan Text:</strong> Innehåller uteslutande tre knappar/ikoner. 🔇 (Tyst), 📱 (Mot örat), 🎧 (Hörlurar).
                             </li>
                             <li>
-                                <strong className="text-pink-300">Decentraliserat Val:</strong> Det enda deltagaren ställer in digitalt är vad de själva vill höra (Kvadrat 2), dvs sitt eget målspråk.
+                                <strong className="text-pink-300">Glidande Reglage:</strong> Till skillnad från vanliga knappar ligger ett osynligt reglage (en accent-färgad div) BAKOM ikonerna ("absolute"). När användaren byter läge glider denna mjuka markeringsdiv fram och tillbaka i sidled beroende på vilket läge som är aktivt.
                             </li>
                         </ul>
                     </div>
                 </div>
-
-                {/* 3. INBJUDAN VIA QR */}
-                <div className="space-y-4 pt-4 border-t border-slate-800">
-                    <h4 className="text-emerald-400 font-bold text-xs uppercase tracking-widest border-l-4 border-emerald-500 pl-3">3. Inbjudan via QR</h4>
-                    
-                    <div className="bg-slate-950 p-4 rounded border border-slate-800">
-                        <p className="text-[11px] text-slate-300 leading-relaxed mb-3">
-                            Ikonen för rumsval (Kvadrat 1 - Ingången) i gränssnittet visar rummets QR-kod vid klick, vilket gör delning omedelbar.
-                        </p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="bg-black/30 p-3 rounded border border-white/5">
-                                <strong className="text-emerald-300 text-[11px] block mb-1">Offentliga Rum</strong>
-                                <p className="text-[10px] text-slate-400">
-                                    Har fasta QR-koder som kan printas ut och sättas upp på väggar eller i programblad.
-                                </p>
-                            </div>
-                            <div className="bg-black/30 p-3 rounded border border-white/5">
-                                <strong className="text-emerald-300 text-[11px] block mb-1">Privata Diskussionsrum</strong>
-                                <p className="text-[10px] text-slate-400">
-                                    Genererar dynamiska Hash-URL:er och QR-koder direkt på skärmen för snabb, tillfällig delning mellan deltagare.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
     );
 };
 
-export default RoomAndMeetingUX;
+export default DashboardGeometryUX;
