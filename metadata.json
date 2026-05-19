@@ -3,5 +3,5 @@
     "microphone"
   ],
   "name": "Arbetsversion efter kyrka.netlify.app efter 10 mars",
-  "description": "Blixtsnabb simultantolk-app via Gemini Live. Använder Manual VAD (6s fönster) och Cloudflare SFU för distribution. Styrs via det minimalistiska gränssnittet 'De Två Kvadraterna'. INGA användarroller (UserRoles), ingen inloggning och inga WebRTC DataChannels existerar i detta projekt. All distribution av ljud är ren Publish/Subscribe av rå-ljud via SFU."
+  "description": "Blixtsnabb simultantolk-app via Gemini Live. Använder Manual VAD (6s fönster) och Cloudflare SFU för enhetlig distribution. Styrs via det minimalistiska gränssnittet 'De Två Kvadraterna' med pillerformade ljudväljare. INGA användarroller (UserRoles), ingen inloggning och inga WebRTC DataChannels existerar i detta projekt."
 }
