@@ -45,7 +45,15 @@ const MasterDevelopmentPlan: React.FC = () => {
                             <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
                                 <span className="bg-blue-900/30 text-blue-300 px-2 py-1 rounded text-[10px] font-mono border border-blue-500/30 whitespace-nowrap">Fas 1: UX-Minimalism</span>
                             </div>
-                            <span className="text-[11px] text-slate-400 leading-relaxed block">(Se Modul 01 och Modul 04 för detaljer). UI i App.tsx, borttagning av roller och DataChannels.</span>
+                            <div className="text-[11px] text-slate-400 leading-relaxed mt-2 space-y-2">
+                                <p>(Se Modul 01 och Modul 04 för detaljer). UI-arkitekturen byggs upp av följande komponenter:</p>
+                                <ul className="list-disc pl-4 space-y-1">
+                                    <li><strong>App.tsx:</strong> Agerar enbart State Machine (isLive). Renderar antingen Lobby eller LiveView (med SubtitleOverlay).</li>
+                                    <li><strong>components/Lobby.tsx:</strong> Ny fil. Renderar "De Två Kvadraterna". Interaktionen för att välja Rum och Språk ska hanteras som Fullskärms-overlays inuti denna fil.</li>
+                                    <li><strong>components/MainActionBtn.tsx:</strong> Ny fil. Den fasta, massiva interaktionsknappen i hörnet (Grön ✔️ för Connect, Röd ❌ för Disconnect).</li>
+                                    <li><strong>components/AudioPill.tsx:</strong> Ny fil. Ersätter den gamla ControlBaren. Placeras i toppen under Live-läget.</li>
+                                </ul>
+                            </div>
                         </div>
                         
                         <div className="bg-slate-950 p-3 rounded border border-slate-800">
@@ -80,8 +88,13 @@ const MasterDevelopmentPlan: React.FC = () => {
                             Följande föråldrade filer betraktas som skräp och <strong>SKA RADERAS</strong> eller helt ignoreras under återuppbyggnaden:
                         </p>
                         <ul className="text-[11px] text-slate-400 list-disc pl-4 space-y-2 font-mono">
-                            <li className="text-red-300/80">src/stores/useAppStore.ts <span className="text-slate-500 italic">(Ersätts av lokalt state)</span></li>
-                            <li className="text-red-300/80">src/services/AudioService.ts <span className="text-slate-500 italic">(Ersätts av useAudioInput/Output)</span></li>
+                            <li className="text-red-300/80">src/stores/useAppStore.ts <span className="text-slate-500 italic">(Ersätts av lokalt state i Two-Screen arkitekturen)</span></li>
+                            <li className="text-red-300/80">src/services/AudioService.ts <span className="text-slate-500 italic">(Död kod, ersätts av enklare hooks)</span></li>
+                            <li className="text-red-300/80">hooks/useTabCoordination.ts <span className="text-slate-500 italic">(Behövs inte längre)</span></li>
+                            <li className="text-red-300/80">components/HeaderControls.tsx <span className="text-slate-500 italic">(Helt obsolet)</span></li>
+                            <li className="text-red-300/80">components/ControlBar.tsx <span className="text-slate-500 italic">(Ersätts av AudioPill)</span></li>
+                            <li className="text-red-300/80">components/SettingsModal.tsx, components/StatsModal.tsx, components/OnboardingModal.tsx <span className="text-slate-500 italic">(Borttagna pga minimalism)</span></li>
+                            <li className="text-red-300/80">components/RoomSelectorModal.tsx, components/LanguageSelectorModal.tsx <span className="text-slate-500 italic">(Ska slås ihop/byggas om som Overlays inuti Lobby.tsx)</span></li>
                         </ul>
                     </div>
                 </div>
